@@ -1,0 +1,31 @@
+Movie :
+
+Un film possède une liste d'acteurs. 
+Il possède plusieurs horaires dans plusieurs cinémas.
+Il possède plusieurs avis.
+La note des films évoluent suivant la note des avis/commenraires. 
+
+Horaire :
+
+Un horaire est associé à un film et à un cinéma. 
+Il permet d'afficher la date ainsi que l'horaire auquel est afficher le film au cinéma x. 
+Un horaire aura une durée de vie et va se supprimer automatiquement (mongo grâce à l'index). Une fois que la séance est passé, l'objet horaire sera supprimé.
+
+ 
+Review :
+
+Correspond à un commentaire/ un avis que l'utisateur donne au film. 
+L'utilisateur donne une note et son avis. 
+Le pseudo de l'utilisateur est afficher au dessus de son avis et de sa note.
+La review est donc associé à un seul film. 
+
+User :
+
+L'utilisateur peut se connecter grâce à son email et son password. 
+L'utilisateur possède un pseudo qui est unique permettant de l'identifier lorsqu'il ajoute un avis à un film par exemple ou lorsqu'il regarde son profil. 
+La notion de sécurité du password ne sera pas assuré. 
+
+Actor : 
+
+Un acteur est associé à 1 ou plusieurs films. Nous pourrons donc savoir quel acteur a joué dans tel film. 
+
