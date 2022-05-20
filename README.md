@@ -10,6 +10,18 @@ AluilCine est un projet de Licence Pro de l'IUT Clermont-Ferrand 2022. (Période
 - [Site du cours](http://clientserveur.milka.ovh/)
 - [Documentation officielle MongoDB](https://www.mongodb.com/docs/manual/)
 
+## Installation
+Télécharger les dépendances
+```bash
+mvn clean install
+```
+
+## Lancement
+Lnacer le projet spring boot
+```bash
+mvn spring-boot:run
+```
+
 ## Auteurs
 
 - [DA SILVA Antoine](https://github.com/antoine6348)
