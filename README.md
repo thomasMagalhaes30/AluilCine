@@ -21,6 +21,10 @@ Lnacer le projet spring boot
 ```bash
 mvn spring-boot:run
 ```
+ou
+```bash
+./mvnw spring-boot:run
+```
 
 ## Auteurs
 
