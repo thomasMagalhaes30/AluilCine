@@ -1,10 +1,12 @@
 package fr.iut.aluilcine.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Represente un utilisateur.
  */
+@Document(collection = "user")
 public class User {
 
     @Id
