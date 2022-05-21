@@ -11,13 +11,21 @@ AluilCine est un projet de Licence Pro de l'IUT Clermont-Ferrand 2022. (Période
 - [Documentation officielle MongoDB](https://www.mongodb.com/docs/manual/)
 
 ## Installation
+⚠ Dans le repertoire du projet
+
 Télécharger les dépendances
 ```bash
 mvn clean install
 ```
+Configurer le .env à partir du .env.sample
+```bash
+cp .env.sample .env
+```
 
 ## Lancement
-Lnacer le projet spring boot
+⚠ Dans le repertoire du projet
+
+Lancer le projet spring boot
 ```bash
 mvn spring-boot:run
 ```
