@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### NO COMMIT PASSWORD ###
-src/main/resources/application.properties
+.env

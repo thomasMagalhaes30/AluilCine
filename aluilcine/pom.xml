@@ -37,6 +37,13 @@
 			<groupId>org.springframework.boot</groupId> 
 			<artifactId>spring-boot-starter-data-rest</artifactId> 
 		</dependency>
+
+		<!-- Utilisation du .env -->
+		<dependency>
+			<groupId>me.paulschwarz</groupId>
+			<artifactId>spring-dotenv</artifactId>
+			<version>2.5.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
