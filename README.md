@@ -17,6 +17,10 @@ Télécharger les dépendances
 ```bash
 mvn clean install
 ```
+ou
+```bash
+./mvnw clean install
+```
 Configurer le .env à partir du .env.sample
 ```bash
 cp .env.sample .env
