@@ -1,4 +1,4 @@
-package fr.iut.repositories;
+package fr.iut.aluilcine.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

@@ -14,8 +14,8 @@ import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@ComponentScan("fr.iut") //to scan packages mentioned
-@EnableMongoRepositories("fr.iut.repositories") //to activate MongoDB repositories
+@ComponentScan("fr.iut.aluilcine") //to scan packages mentioned
+@EnableMongoRepositories("fr.iut.aluilcine.repositories") //to activate MongoDB repositories
 public class AluilcineApplication {
 
 	static Logger logger = LoggerFactory.getLogger(AluilcineApplication.class);

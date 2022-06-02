@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.iut.aluilcine.entities.User;
-import fr.iut.repositories.UserRepository;
+import fr.iut.aluilcine.repositories.UserRepository;
 
 /**
  * UserController qui permet la gestion des {@link User users}.
