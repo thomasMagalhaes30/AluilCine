@@ -2,27 +2,91 @@
 package fr.iut.aluilcine.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import fr.iut.aluilcine.AluilcineApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import fr.iut.aluilcine.entities.User;
 import fr.iut.aluilcine.repositories.UserRepository;
+
+import static org.springframework.http.HttpStatus.*;
 
 /**
  * UserController qui permet la gestion des {@link User users}.
  */
 @RestController
-public class UserController {
-     
-    final UserRepository repository;
+@RequestMapping("/users")
+public class UserController extends BaseController<User, UserRepository>{
 
-    public UserController(UserRepository repository) {
-        this.repository = repository;
+    @GetMapping("")
+    public ResponseEntity<List<User>> getAll() {
+        try {
+            return new ResponseEntity<>(repository.findAll(), OK);
+        }catch (Exception e){
+            customLogError(e.getMessage());
+        }
+        return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/users")
-    public List<User> list() {
-        return repository.findAll();
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getOneById(@PathVariable("id") String id){
+        try {
+            Optional<User> opt = repository.findById(id);
+            if (opt.isEmpty()){
+                return new ResponseEntity<>(NOT_FOUND);
+            }
+            return new ResponseEntity<>(opt.get(), OK);
+        }catch (Exception e){
+            customLogError(e.getMessage());
+        }
+        return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<User> addOne(@RequestBody User user){
+        try {
+            return new ResponseEntity<>(repository.save(user), CREATED);
+        }catch (Exception e){
+            customLogError(e.getMessage());
+        }
+        return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateOne(@PathVariable("id") String id, @RequestBody User user) {
+        try {
+            Optional<User> opt = repository.findById(id);
+            if (opt.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            User _user = opt.get();
+            _user.setPseudo(user.getPseudo());
+            _user.setPassword(user.getPassword());
+            _user.setEmail(user.getEmail());
+
+            return new ResponseEntity<>(repository.save(_user), HttpStatus.OK);
+        }catch (Exception e){
+            customLogError(e.getMessage());
+        }
+        return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteOne(@PathVariable("id") String id) {
+        try {
+            repository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            customLogError(e.getMessage());
+        }
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
 }
