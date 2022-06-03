@@ -21,7 +21,7 @@ public class Cinema {
 
     public Cinema() {}
 
-    public Cinema(String id, int schemaVersion, String name, String location, double longitude, double latitude) {
+    public Cinema(String id, int schemaVersion, String name, String location, float longitude, float latitude) {
         this.id = id;
         this.schemaVersion = schemaVersion;
         this.name = name;
