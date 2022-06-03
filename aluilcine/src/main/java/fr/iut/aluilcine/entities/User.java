@@ -10,23 +10,62 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    public String id;
+    private String id; // org.bson.types.ObjectId ?
 
-    public int schemaVersion;
+    private int schemaVersion;
 
-    public String pseudo;
+    private String pseudo;
 
-    public String email;
+    private String email;
 
-    public String password;
+    private String password;
 
     public User(){}
 
-    public User(String id, int schemaVersion, String pseudo, String email, String password) {
-        this.id = id;
+    public User(int schemaVersion, String pseudo, String email, String password) {
         this.schemaVersion = schemaVersion;
         this.pseudo = pseudo;
         this.email = email;
+        this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getSchemaVersion() {
+        return schemaVersion;
+    }
+
+    public void setSchemaVersion(int schemaVersion) {
+        this.schemaVersion = schemaVersion;
+    }
+
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
