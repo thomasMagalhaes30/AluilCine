@@ -16,9 +16,9 @@ public class Movie{
 
     public String title;
 
-    public Timespan duration;
+    public String duration;
 
-    public Date releaseDate;
+    public String release_date;
 
     public String synopsis;
 
@@ -26,7 +26,7 @@ public class Movie{
 
     public String category;
 
-    public String imageUrl;
+    public String image_uri;
 
     public int totalReview;
 
@@ -34,15 +34,15 @@ public class Movie{
 
     public int schemaVersion;
 
-    public Movie(String id, String title, Timespan duration, Date releaseDate, String synopsis, Float mark, String category, String imageUrl, int totalReview, List<Actor> actors, int schemaVersion) {
+    public Movie(String id, String title, String duration, String release_date, String synopsis, Float mark, String category, String image_uri, int totalReview, List<Actor> actors, int schemaVersion) {
         this.id = id;
         this.title = title;
         this.duration = duration;
-        this.releaseDate = releaseDate;
+        this.release_date = release_date;
         this.synopsis = synopsis;
         this.mark = mark;
         this.category = category;
-        this.imageUrl = imageUrl;
+        this.image_uri = image_uri;
         this.totalReview = totalReview;
         this.actors = actors;
         this.schemaVersion = schemaVersion;
@@ -54,11 +54,11 @@ public class Movie{
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", duration=" + duration +
-                ", releaseDate=" + releaseDate +
+                ", release_date=" + release_date +
                 ", synopsis='" + synopsis + '\'' +
                 ", mark=" + mark +
                 ", category='" + category + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", image_uri='" + image_uri + '\'' +
                 ", totalReview=" + totalReview +
                 ", actors=" + actors +
                 ", schemaVersion=" + schemaVersion +
