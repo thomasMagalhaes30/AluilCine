@@ -5,7 +5,7 @@ Il possède plusieurs horaires dans plusieurs cinémas.
 Il possède plusieurs avis.
 La note des films évoluent suivant la note des avis/commenraires. 
 
-Horaire :
+MovieSession :
 
 Un horaire est associé à un film et à un cinéma. 
 Il permet d'afficher la date ainsi que l'horaire auquel est afficher le film au cinéma x. 
