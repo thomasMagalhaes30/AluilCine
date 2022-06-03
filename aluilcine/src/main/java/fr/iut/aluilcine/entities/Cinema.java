@@ -15,22 +15,30 @@ public class Cinema {
 
     public String location;
 
+    public float longitude;
+
+    public float latitude;
+
     public Cinema() {}
 
-    public Cinema(String id, int schemaVersion, String name, String location) {
+    public Cinema(String id, int schemaVersion, String name, String location, double longitude, double latitude) {
         this.id = id;
         this.schemaVersion = schemaVersion;
         this.name = name;
         this.location = location;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
-    @Override
-    public String toString() {
+    @java.lang.Override
+    public java.lang.String toString() {
         return "Cinema{" +
                 "id='" + id + '\'' +
                 ", schemaVersion=" + schemaVersion +
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
                 '}';
     }
 }

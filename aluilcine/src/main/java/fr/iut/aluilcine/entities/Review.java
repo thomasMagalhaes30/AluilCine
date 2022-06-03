@@ -20,19 +20,22 @@ public class Review {
 
     public String movieId;
 
+    public String userId;
+
     public Review() {}
 
-    public Review(String id, int schemaVersion, String pseudo, String message, int mark, String movieId) {
+    public Review(String id, int schemaVersion, String pseudo, String message, int mark, String movieId, String userId) {
         this.id = id;
         this.schemaVersion = schemaVersion;
         this.pseudo = pseudo;
         this.message = message;
         this.mark = mark;
         this.movieId = movieId;
+        this.userId = userId;
     }
 
-    @Override
-    public String toString() {
+    @java.lang.Override
+    public java.lang.String toString() {
         return "Review{" +
                 "id='" + id + '\'' +
                 ", schemaVersion=" + schemaVersion +
@@ -40,6 +43,7 @@ public class Review {
                 ", message='" + message + '\'' +
                 ", mark=" + mark +
                 ", movieId='" + movieId + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }
