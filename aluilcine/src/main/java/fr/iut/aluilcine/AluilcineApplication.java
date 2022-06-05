@@ -19,6 +19,7 @@ public class AluilcineApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AluilcineApplication.class, args);
 		logger.info(String.format("%s started", AluilcineApplication.class.getSimpleName()));
+		//printLogo();
 	}
 
 	/**
@@ -29,6 +30,34 @@ public class AluilcineApplication {
 		MappingMongoConverter converter = new MappingMongoConverter(new DefaultDbRefResolver(mongoDbFactory), context);
 		context.setAutoIndexCreation(true);
 		return new MongoTemplate(mongoDbFactory, converter);
+	}
+
+	private static void printLogo(){
+		System.out.println("                             .:---.               ");
+		System.out.println("                          :########-              ");
+		System.out.println("          .::-:           -########*              ");
+		System.out.println("       +#######:         :##########:             ");
+		System.out.println("      -#########*-.  ..-*###########+             ");
+		System.out.println("       ##############################.            ");
+		System.out.println("       =###############**############=            ");
+		System.out.println("       .############+    *############            ");
+		System.out.println("        +############:--=*############-           ");
+		System.out.println("        :############+.   +*##########*           ");
+		System.out.println("         *##########+.      .+#########:          ");
+		System.out.println("         -#########+   :-==   #########+          ");
+		System.out.println("          #########+  .#: #.  =#########.         ");
+		System.out.println("          =#########   += =+  .#########=         ");
+		System.out.println("          .#########-  .* .#   +#########         ");
+		System.out.println("           +########*   *: *=  :#########-        ");
+		System.out.println("           :#########:  :+=-:   *########*        ");
+		System.out.println("            *########+        .:+#########.       ");
+		System.out.println("            -#########--=+*###############+       ");
+		System.out.println("             ##############################       ");
+		System.out.println("             +###########*=:. .:-*#########-      ");
+		System.out.println("             .##########-         :#######+.      ");
+		System.out.println("              *########=           :=-:.          ");
+		System.out.println("              :########-                          ");
+		System.out.println("               .-=-:.                             ");
 	}
 
 }

@@ -96,6 +96,5 @@ public class UserController extends BaseController<User, UserRepository>{
             customLogError(e.getMessage());
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
     }
 }
