@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import fr.iut.aluilcine.entities.User;
 import fr.iut.aluilcine.repositories.UserRepository;
 
+import javax.validation.ConstraintViolation;
+
 import static org.springframework.http.HttpStatus.*;
 
 /**
@@ -45,8 +47,13 @@ public class UserController extends BaseController<User, UserRepository>{
     }
 
     @PostMapping("")
-    public ResponseEntity<User> addOne(@RequestBody User user){
+    public ResponseEntity<?> addOne(@RequestBody User user){
         try {
+            // valide l'entite
+            Optional<String> optValidation = validateEntity(user);
+            if (optValidation.isPresent()) {
+                return new ResponseEntity<>(optValidation.get(), UNPROCESSABLE_ENTITY);
+            }
             return new ResponseEntity<>(repository.save(user), CREATED);
         }catch (Exception e){
             customLogError(e.getMessage());
@@ -55,8 +62,14 @@ public class UserController extends BaseController<User, UserRepository>{
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateOne(@PathVariable("id") String id, @RequestBody User user) {
+    public ResponseEntity<?> updateOne(@PathVariable("id") String id, @RequestBody User user) {
         try {
+            // valide l'entite
+            Optional<String> optValidation = validateEntity(user);
+            if (optValidation.isPresent()) {
+                return new ResponseEntity<>(optValidation.get(), UNPROCESSABLE_ENTITY);
+            }
+
             Optional<User> opt = repository.findById(id);
             if (opt.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -73,7 +86,6 @@ public class UserController extends BaseController<User, UserRepository>{
         }
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteOne(@PathVariable("id") String id) {
