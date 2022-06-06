@@ -5,27 +5,22 @@ import org.springframework.data.annotation.Id;
 /**
  * Represente un commentaire
  */
-public class Review {
+public class Review extends BaseEntity{
+    private int schemaVersion;
 
-    @Id
-    public String id;
+    private String pseudo;
 
-    public int schemaVersion;
+    private String message;
 
-    public String pseudo;
+    private int mark;
 
-    public String message;
+    private String movieId;
 
-    public int mark;
-
-    public String movieId;
-
-    public String userId;
+    private String userId;
 
     public Review() {}
 
-    public Review(String id, int schemaVersion, String pseudo, String message, int mark, String movieId, String userId) {
-        this.id = id;
+    public Review(int schemaVersion, String pseudo, String message, int mark, String movieId, String userId) {
         this.schemaVersion = schemaVersion;
         this.pseudo = pseudo;
         this.message = message;
@@ -34,7 +29,55 @@ public class Review {
         this.userId = userId;
     }
 
-    @java.lang.Override
+    public int getSchemaVersion() {
+        return schemaVersion;
+    }
+
+    public void setSchemaVersion(int schemaVersion) {
+        this.schemaVersion = schemaVersion;
+    }
+
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    @Override
     public java.lang.String toString() {
         return "Review{" +
                 "id='" + id + '\'' +
