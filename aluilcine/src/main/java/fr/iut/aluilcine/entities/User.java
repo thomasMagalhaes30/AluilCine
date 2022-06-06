@@ -11,11 +11,7 @@ import javax.validation.constraints.Size;
  * Represente un utilisateur.
  */
 @Document(collection = "user")
-public class User {
-
-    @Id
-    private String id; // org.bson.types.ObjectId ?
-
+public class User extends BaseEntity {
     private int schemaVersion;
 
     @NotBlank
@@ -37,14 +33,6 @@ public class User {
         this.pseudo = pseudo;
         this.email = email;
         this.password = password;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public int getSchemaVersion() {

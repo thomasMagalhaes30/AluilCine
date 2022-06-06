@@ -12,10 +12,7 @@ import java.util.Date;
  * Represente une sceance de cinema
  */
 @Document(collection = "moviessession")
-public class MovieSession {
-
-    @Id
-    public String id;
+public class MovieSession extends BaseEntity{
 
     @Min(0)
     private int schema_version;
@@ -38,14 +35,6 @@ public class MovieSession {
         this.movie_id = movieId;
         this.cinema_id = cinemaId;
         this.date_schedule = date_schedule;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public int getSchema_version() {
