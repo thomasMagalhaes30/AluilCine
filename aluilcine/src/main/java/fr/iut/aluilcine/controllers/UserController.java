@@ -72,7 +72,7 @@ public class UserController extends BaseController<User, UserRepository>{
 
             Optional<User> opt = repository.findById(id);
             if (opt.isEmpty()){
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(NOT_FOUND);
             }
 
             User _user = opt.get();
@@ -91,10 +91,10 @@ public class UserController extends BaseController<User, UserRepository>{
     public ResponseEntity<HttpStatus> deleteOne(@PathVariable("id") String id) {
         try {
             repository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(NO_CONTENT);
         } catch (Exception e) {
             customLogError(e.getMessage());
         }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 }

@@ -3,6 +3,9 @@ package fr.iut.aluilcine.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -14,12 +17,18 @@ public class MovieSession {
     @Id
     public String id;
 
+    @Min(0)
     private int schema_version;
 
+    @NotNull
+    @NotBlank
     private String movie_id;
 
+    @NotNull
+    @NotBlank
     private String cinema_id;
 
+    @NotNull
     private Date date_schedule;
 
     public MovieSession() {}
