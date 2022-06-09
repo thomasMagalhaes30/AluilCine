@@ -1,7 +1,5 @@
 package fr.iut.aluilcine.entities;
 
-import org.springframework.data.annotation.Id;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

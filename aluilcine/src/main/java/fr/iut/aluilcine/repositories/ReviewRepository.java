@@ -1,7 +1,6 @@
 package fr.iut.aluilcine.repositories;
 
 import fr.iut.aluilcine.entities.Review;
-import fr.iut.aluilcine.entities.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

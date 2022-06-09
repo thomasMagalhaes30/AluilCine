@@ -2,9 +2,7 @@
 package fr.iut.aluilcine.controllers;
 
 import fr.iut.aluilcine.entities.Review;
-import fr.iut.aluilcine.entities.User;
 import fr.iut.aluilcine.repositories.ReviewRepository;
-import fr.iut.aluilcine.repositories.UserRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
