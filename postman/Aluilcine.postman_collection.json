@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "08829897-fc04-4c1c-8e0a-d1adf759be78",
+		"_postman_id": "8f6b0696-9747-4965-b6ee-d84885d27953",
 		"name": "Aluilcine",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -117,6 +117,117 @@
 			]
 		},
 		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "ALL REVIEWS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/reviews",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ONE REVIEW",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/reviews/{{review-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"reviews",
+								"{{review-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REVIEWS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schemaVersion\": 0,\n    \"pseudo\": \"Margaux Charles\",\n    \"message\": \"Les licornes\",\n    \"mark\": 4,\n    \"movieId\": null,\n    \"userId\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/reviews",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REVIEW",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schemaVersion\": 0,\n    \"pseudo\": \"Margaux Charles\",\n    \"message\": \"Message update\",\n    \"mark\": 4,\n    \"movieId\": null,\n    \"userId\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/reviews/{{review-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"reviews",
+								"{{review-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE REVIEW",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/users/629bb527cdb90162e2f1427a",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"users",
+								"629bb527cdb90162e2f1427a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Hello",
 			"item": [
 				{
@@ -125,14 +236,30 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/hello",
-							"protocol": "http",
+							"raw": "{{aluilcine-url}}/hello",
 							"host": [
-								"localhost"
+								"{{aluilcine-url}}"
 							],
-							"port": "8080",
 							"path": [
 								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hello - env",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/hello/env",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"hello",
+								"env"
 							]
 						}
 					},
@@ -153,12 +280,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/hello",
-							"protocol": "http",
+							"raw": "{{aluilcine-url}}/hello",
 							"host": [
-								"localhost"
+								"{{aluilcine-url}}"
 							],
-							"port": "8080",
 							"path": [
 								"hello"
 							]
@@ -167,6 +292,146 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Cinema",
+			"item": [
+				{
+					"name": "ALL CINEMAS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/cinemas",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"cinemas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ONE CINEMA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/cinemas/{{cinema-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"cinemas",
+								"{{cinema-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CINEMA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schemaVersion\": 0,\n    \"name\": \"Le grand Cinema\",\n    \"location\": \"32 Boulevard inspiration\",\n    \"longitude\": 0,\n    \"latitude\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/cinemas",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"cinemas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CINEMA",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/cinemas/{{cinema-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"cinemas",
+								"{{cinema-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CINEMA",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/cinemas/",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"cinemas",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "aluilcine-url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "user-id",
+			"value": "6293b10ce2367c6d8659ef34"
+		},
+		{
+			"key": "review-id",
+			"value": "62947b6fe0955861ecc0fbdd"
+		},
+		{
+			"key": "cinema-id",
+			"value": "628795f189daada4f8be9c53"
 		}
 	]
 }
