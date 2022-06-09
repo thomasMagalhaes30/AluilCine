@@ -2,7 +2,6 @@ package fr.iut.aluilcine.controllers;
 
 
 import fr.iut.aluilcine.entities.BaseEntity;
-import fr.iut.aluilcine.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
