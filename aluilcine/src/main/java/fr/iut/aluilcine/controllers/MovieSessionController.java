@@ -1,12 +1,7 @@
 package fr.iut.aluilcine.controllers;
 
-import fr.iut.aluilcine.entities.Cinema;
-import fr.iut.aluilcine.entities.Movie;
 import fr.iut.aluilcine.entities.MovieSession;
-import fr.iut.aluilcine.repositories.CinemaRepository;
 import fr.iut.aluilcine.repositories.MovieSessionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +19,10 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 @RequestMapping("/moviesessions")
 public class MovieSessionController extends BaseController<MovieSession, MovieSessionRepository> {
-
-    @Autowired
-    private CinemaRepository cinemaRepository;
     
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
     
-    private ZoneId defaultZoneId = ZoneId.systemDefault();
+    private final ZoneId defaultZoneId = ZoneId.systemDefault();
 
     @GetMapping("/condition")
     public ResponseEntity<?> getAll(@RequestParam(value = "date", required = false) String day,
@@ -43,37 +35,35 @@ public class MovieSessionController extends BaseController<MovieSession, MovieSe
             if (day == null && cinemaId == null && movieId == null)
                 return new ResponseEntity<>(repository.findAll(), OK);
 
-            boolean useCinemaId = false, useMovieId = false;
+            if (day == null) {
 
-            if (cinemaId != null && !cinemaId.isBlank()) {
-                Optional<Cinema> optCinema = cinemaRepository.findById(cinemaId);
+                // si la requête demande que selon le cinemaID
+                if (movieId == null)
+                    return new ResponseEntity<>(repository.findByCinemaId(cinemaId), OK);
 
-                // s'il n'y a pas de cinema, alors on renvoit un tableau vide
-                if (optCinema.isEmpty()) {
-                    return new ResponseEntity<>("[]",NOT_FOUND);
-                }
-
-                useCinemaId = true;
+                // Si la requête demande que selon le movieID
+                if (cinemaId == null)
+                    return new ResponseEntity<>(repository.findByMovieId(movieId), OK);
             }
 
-            if (movieId != null && !movieId.isBlank()) {
-                Optional<Movie> optMovie = Optional.empty(); // MovieRepository.findById(movie_id);
+            boolean useCinemaId = cinemaId != null && !cinemaId.isBlank();
+            boolean useMovieId = (movieId != null && !movieId.isBlank());
 
-                // pareil : s'il n'y a pas de Movie, alors on renvoit un tableau vide
-                if (optMovie.isEmpty()) {
-                    return new ResponseEntity<>("[]", NOT_FOUND);
-                }
+            List<MovieSession> moviesessions = null;
 
-                useMovieId = true;
+            if (useMovieId && useCinemaId) {
+                moviesessions = repository.findByCinemaIdAndMovieId(cinemaId, movieId);
             }
 
-            List<MovieSession> moviesessions = repository.findAll();
+            else if (useMovieId) {
+                moviesessions = repository.findByMovieId(movieId);
+            }
 
-            if (useCinemaId)
-                moviesessions.removeIf(movieSession -> !movieSession.getCinema_id().equals(cinemaId));
+            else if (useCinemaId) {
+                moviesessions = repository.findByCinemaId(cinemaId);
+            }
 
-            if (useMovieId)
-                moviesessions.removeIf(movieSession -> !movieSession.getMovie_id().equals(movieId));
+            else moviesessions = repository.findAll();
 
             if (day != null && !day.isBlank()) {
                 LocalDate local = LocalDate.parse(day, formatter);
