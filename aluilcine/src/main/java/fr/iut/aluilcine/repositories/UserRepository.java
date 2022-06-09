@@ -1,8 +1,7 @@
 package fr.iut.aluilcine.repositories;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
 import fr.iut.aluilcine.entities.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * Represente un repository des utilisateurs
