@@ -10,72 +10,72 @@ import java.util.Date;
 /**
  * Represente une sceance de cinema
  */
-@Document(collection = "moviessession")
+@Document(collection = "movieSessions")
 public class MovieSession extends BaseEntity{
 
     @Min(0)
-    private int schema_version;
+    private int schemaVersion;
 
     @NotNull
     @NotBlank
-    private String movie_id;
+    private String movieId;
 
     @NotNull
     @NotBlank
-    private String cinema_id;
+    private String cinemaId;
 
     @NotNull
-    private Date date_schedule;
+    private Date dateSchedule;
 
     public MovieSession() {}
 
     public MovieSession(int schemaVersion, String movieId, String cinemaId, Date date_schedule) {
-        this.schema_version = schemaVersion;
-        this.movie_id = movieId;
-        this.cinema_id = cinemaId;
-        this.date_schedule = date_schedule;
+        this.schemaVersion = schemaVersion;
+        this.movieId = movieId;
+        this.cinemaId = cinemaId;
+        this.dateSchedule = date_schedule;
     }
 
-    public int getSchema_version() {
-        return schema_version;
+    public int getSchemaVersion() {
+        return schemaVersion;
     }
 
-    public void setSchema_version(int schema_version) {
-        this.schema_version = schema_version;
+    public void setSchemaVersion(int schemaVersion) {
+        this.schemaVersion = schemaVersion;
     }
 
-    public String getMovie_id() {
-        return movie_id;
+    public String getMovieId() {
+        return movieId;
     }
 
-    public void setMovie_id(String movie_id) {
-        this.movie_id = movie_id;
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
-    public String getCinema_id() {
-        return cinema_id;
+    public String getCinemaId() {
+        return cinemaId;
     }
 
-    public void setCinema_id(String cinema_id) {
-        this.cinema_id = cinema_id;
+    public void setCinemaId(String cinemaId) {
+        this.cinemaId = cinemaId;
     }
 
-    public Date getDate_schedule() {
-        return date_schedule;
+    public Date getDateSchedule() {
+        return dateSchedule;
     }
 
-    public void setDate_schedule(Date date_schedule) {
-        this.date_schedule = date_schedule;
+    public void setDateSchedule(Date dateSchedule) {
+        this.dateSchedule = dateSchedule;
     }
 
     @Override
     public String toString() {
         return "MovieSession{" +
                 "id='" + id + '\'' +
-                ", schema_version=" + schema_version +
-                ", movie_id='" + movie_id + '\'' +
-                ", cinema_id='" + cinema_id + '\'' +
-                ", date_schedule='" + date_schedule + '\'' +
+                ", schema_version=" + schemaVersion +
+                ", movie_id='" + movieId + '\'' +
+                ", cinema_id='" + cinemaId + '\'' +
+                ", date_schedule='" + dateSchedule + '\'' +
                 '}';
     }
 }
