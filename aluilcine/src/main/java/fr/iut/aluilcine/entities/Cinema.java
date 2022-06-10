@@ -1,10 +1,13 @@
 package fr.iut.aluilcine.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.*;
 
 /**
  * Represente un cinema
  */
+@Document(collection = "cinema")
 public class Cinema extends BaseEntity{
 
     @Min(0)

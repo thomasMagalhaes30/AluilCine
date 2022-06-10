@@ -1,10 +1,112 @@
 {
 	"info": {
-		"_postman_id": "8f6b0696-9747-4965-b6ee-d84885d27953",
+		"_postman_id": "08d9cea9-42df-4d48-9310-40bbdab9ab1c",
 		"name": "Aluilcine",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Movie",
+			"item": [
+				{
+					"name": "ALL MOVIES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movies",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ONE MOVIE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "MOVIE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"0072\",\n    \"duration\": \"01:30:33\",\n    \"release_date\": \"12/12/2022\",\n    \"synopsis\": \"synopsis\",\n    \"mark\": 4.0,\n    \"categories\": [],\n    \"image_uri\": \"image_uri\",\n    \"image_large_uri\": \"image_large_uri\",\n    \"totalReview\": 0,\n    \"actors\": [],\n    \"schemaVersion\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MOVIE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"0078\",\n    \"duration\": \"01:30:33\",\n    \"release_date\": \"12/12/2022\",\n    \"synopsis\": \"synopsis\",\n    \"mark\": 4.0,\n    \"categories\": [],\n    \"image_uri\": \"image_uri\",\n    \"image_large_uri\": \"image_large_uri\",\n    \"totalReview\": 0,\n    \"actors\": [],\n    \"schemaVersion\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/{{movie-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"{{movie-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MOVIE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/62a30596ab87a15c7f707700",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"62a30596ab87a15c7f707700"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Users",
 			"item": [
@@ -432,6 +534,11 @@
 		{
 			"key": "cinema-id",
 			"value": "628795f189daada4f8be9c53"
+		},
+		{
+			"key": "movie-id",
+			"value": "62a303c4ab87a15c7f7076fe",
+			"type": "default"
 		}
 	]
 }

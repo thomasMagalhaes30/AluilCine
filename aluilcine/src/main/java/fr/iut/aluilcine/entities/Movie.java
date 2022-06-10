@@ -1,64 +1,173 @@
 package fr.iut.aluilcine.entities;
 
-import jdk.jfr.Timespan;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
  * Représentation d'un film.
  */
-public class Movie{
+@Document(collection = "movie")
+public class Movie extends BaseEntity{
 
-    @Id
-    public String id;
+    @NotNull
+    @NotBlank
+    private String title;
 
-    public String title;
+    @NotNull
+    @NotBlank
+    private String duration;
 
-    public String duration;
+    @NotNull
+    @NotBlank
+    private String release_date;
 
-    public String release_date;
+    @NotNull
+    @NotBlank
+    private String synopsis;
 
-    public String synopsis;
+    @Min(0)
+    @Max(20)
+    private Float mark;
 
-    public Float mark;
+    @NotNull
+    private List<String> categories;
 
-    public String category;
+    @NotNull
+    @NotBlank
+    private String image_uri;
 
-    public String image_uri;
+    @NotNull
+    @NotBlank
+    private String image_large_uri;
 
-    public int totalReview;
+    @Min(0)
+    @NotNull
+    private int totalReview;
 
-    public List<Actor> actors;
+    @NotNull
+    private List<Actor> actors;
 
-    public int schemaVersion;
+    @Min(0)
+    private int schemaVersion;
 
-    public Movie(String id, String title, String duration, String release_date, String synopsis, Float mark, String category, String image_uri, int totalReview, List<Actor> actors, int schemaVersion) {
-        this.id = id;
+    public Movie(String title, String duration, String release_date, String synopsis, Float mark, List<String> categories, String image_uri, String image_large_uri, int totalReview, List<Actor> actors, int schemaVersion) {
         this.title = title;
         this.duration = duration;
         this.release_date = release_date;
         this.synopsis = synopsis;
         this.mark = mark;
-        this.category = category;
+        this.categories = categories;
         this.image_uri = image_uri;
+        this.image_large_uri = image_large_uri;
         this.totalReview = totalReview;
         this.actors = actors;
+        this.schemaVersion = schemaVersion;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public Float getMark() {
+        return mark;
+    }
+
+    public void setMark(Float mark) {
+        this.mark = mark;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
+    public String getImage_uri() {
+        return image_uri;
+    }
+
+    public void setImage_uri(String image_uri) {
+        this.image_uri = image_uri;
+    }
+
+    public String getImage_large_uri() {
+        return image_large_uri;
+    }
+
+    public void setImage_large_uri(String image_large_uri) {
+        this.image_large_uri = image_large_uri;
+    }
+
+    public int getTotalReview() {
+        return totalReview;
+    }
+
+    public void setTotalReview(int totalReview) {
+        this.totalReview = totalReview;
+    }
+
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
+
+    public int getSchemaVersion() {
+        return schemaVersion;
+    }
+
+    public void setSchemaVersion(int schemaVersion) {
         this.schemaVersion = schemaVersion;
     }
 
     @Override
     public String toString() {
         return "Movie{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", duration=" + duration +
-                ", release_date=" + release_date +
+                "title='" + title + '\'' +
+                ", duration='" + duration + '\'' +
+                ", release_date='" + release_date + '\'' +
                 ", synopsis='" + synopsis + '\'' +
                 ", mark=" + mark +
-                ", category='" + category + '\'' +
+                ", category=" + categories +
                 ", image_uri='" + image_uri + '\'' +
+                ", image_large_uri='" + image_large_uri + '\'' +
                 ", totalReview=" + totalReview +
                 ", actors=" + actors +
                 ", schemaVersion=" + schemaVersion +
