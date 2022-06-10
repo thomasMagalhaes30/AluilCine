@@ -1,7 +1,6 @@
 {
 	"info": {
-		"_postman_id": "08d9cea9-42df-4d48-9310-40bbdab9ab1c",
-
+		"_postman_id": "7b94a070-a76f-45fc-8283-8ccc50c4ea28",
 		"name": "Aluilcine",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -30,7 +29,10 @@
 					"name": "ONE MOVIE",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -497,6 +499,117 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "ALL CATEGORY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/category",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ONE CATEGORY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/category/{{category-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"category",
+								"{{category-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CATEGORY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Thriller\",\n    \"schemaVersion\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/category",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CATEGORY",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\":\"CouOCu\",\n    \"schemaVersion\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/category/{{category-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"category",
+								"{{category-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CATEGORY",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/category/62a3059adc403538ab34fc9a",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"category",
+								"62a3059adc403538ab34fc9a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -538,8 +651,11 @@
 		},
 		{
 			"key": "movie-id",
-			"value": "62a303c4ab87a15c7f7076fe",
-			"type": "default"
+			"value": "62a303c4ab87a15c7f7076fe"
+		},
+		{
+			"key": "category-id",
+			"value": "62a30389dc403538ab34fc98"
 		}
 	]
 }
