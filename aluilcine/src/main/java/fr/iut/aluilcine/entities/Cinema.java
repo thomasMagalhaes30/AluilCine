@@ -1,12 +1,13 @@
 package fr.iut.aluilcine.entities;
 
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.*;
 
 /**
  * Represente un cinema
  */
+
 @Document(collection = "cinema")
 public class Cinema extends BaseEntity{
 
@@ -18,11 +19,12 @@ public class Cinema extends BaseEntity{
     @Size(min=2,max=128)
     private String name;
 
+
     @NotBlank
     @NotNull
     @Size(min=2,max=128)
     private String location;
-
+  
     @NotNull
     @Min(-180)
     @Max(180)
