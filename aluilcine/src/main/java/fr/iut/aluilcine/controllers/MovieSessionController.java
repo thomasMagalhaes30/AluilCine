@@ -26,8 +26,8 @@ public class MovieSessionController extends BaseController<MovieSession, MovieSe
 
     @GetMapping("/condition")
     public ResponseEntity<?> getAll(@RequestParam(value = "date", required = false) String day,
-                                    @RequestParam(value = "cinema_id", required = false) String cinemaId,
-                                    @RequestParam(value = "movie_id", required = false) String movieId)
+                                    @RequestParam(value = "cinemaId", required = false) String cinemaId,
+                                    @RequestParam(value = "movieId", required = false) String movieId)
     {
         // optimisation en retardant le plus l'appel à repository findAll
         // sauf dans le cas particulier où les paramètres de la requête sont null
@@ -72,8 +72,8 @@ public class MovieSessionController extends BaseController<MovieSession, MovieSe
                 Date jourFin = Date.from(local.minusDays(-1).atStartOfDay(defaultZoneId).toInstant());
 
                 moviesessions.removeIf(movieSession ->
-                        movieSession.getDate_schedule().before(jourDebut) ||
-                        movieSession.getDate_schedule().after(jourFin));
+                        movieSession.getDateSchedule().before(jourDebut) ||
+                        movieSession.getDateSchedule().after(jourFin));
             }
 
             return new ResponseEntity<>(moviesessions, OK);
