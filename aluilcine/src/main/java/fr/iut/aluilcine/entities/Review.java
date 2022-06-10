@@ -1,9 +1,6 @@
 package fr.iut.aluilcine.entities;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * Represente un commentaire
@@ -22,19 +19,18 @@ public class Review extends BaseEntity{
     @Max(20)
     private int mark;
 
+    @NotNull
+    @NotBlank
     private String movieId;
-
-    private String userId;
 
     public Review() {}
 
-    public Review(int schemaVersion, String pseudo, String message, int mark, String movieId, String userId) {
+    public Review(int schemaVersion, String pseudo, String message, int mark, String movieId) {
         this.schemaVersion = schemaVersion;
         this.pseudo = pseudo;
         this.message = message;
         this.mark = mark;
         this.movieId = movieId;
-        this.userId = userId;
     }
 
     public int getSchemaVersion() {
@@ -77,14 +73,6 @@ public class Review extends BaseEntity{
         this.movieId = movieId;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     @Override
     public java.lang.String toString() {
         return "Review{" +
@@ -94,7 +82,6 @@ public class Review extends BaseEntity{
                 ", message='" + message + '\'' +
                 ", mark=" + mark +
                 ", movieId='" + movieId + '\'' +
-                ", userId='" + userId + '\'' +
                 '}';
     }
 }
