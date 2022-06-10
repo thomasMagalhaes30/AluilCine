@@ -6,7 +6,6 @@ import javax.validation.constraints.*;
  * Represente un commentaire
  */
 public class Review extends BaseEntity{
-    private int schemaVersion;
 
     @NotBlank
     @Size(min=2, max = 128)
@@ -16,7 +15,7 @@ public class Review extends BaseEntity{
     private String message;
     
     @Min(0)
-    @Max(20)
+    @Max(5)
     private int mark;
 
     @NotNull
@@ -31,14 +30,6 @@ public class Review extends BaseEntity{
         this.message = message;
         this.mark = mark;
         this.movieId = movieId;
-    }
-
-    public int getSchemaVersion() {
-        return schemaVersion;
-    }
-
-    public void setSchemaVersion(int schemaVersion) {
-        this.schemaVersion = schemaVersion;
     }
 
     public String getPseudo() {

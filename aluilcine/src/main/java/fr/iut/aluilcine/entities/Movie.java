@@ -6,6 +6,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,15 +24,14 @@ public class Movie extends BaseEntity{
     private String duration;
 
     @NotNull
-    @NotBlank
-    private String release_date;
+    private Date release_date;
 
     @NotNull
     @NotBlank
     private String synopsis;
 
     @Min(0)
-    @Max(20)
+    @Max(5)
     private Float mark;
 
     @NotNull
@@ -52,10 +52,7 @@ public class Movie extends BaseEntity{
     @NotNull
     private List<Actor> actors;
 
-    @Min(0)
-    private int schemaVersion;
-
-    public Movie(String title, String duration, String release_date, String synopsis, Float mark, List<String> categories, String image_uri, String image_large_uri, int totalReview, List<Actor> actors, int schemaVersion) {
+    public Movie(String title, String duration, Date release_date, String synopsis, Float mark, List<String> categories, String image_uri, String image_large_uri, int totalReview, List<Actor> actors, int schemaVersion) {
         this.title = title;
         this.duration = duration;
         this.release_date = release_date;
@@ -85,11 +82,11 @@ public class Movie extends BaseEntity{
         this.duration = duration;
     }
 
-    public String getRelease_date() {
+    public Date getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(String release_date) {
+    public void setRelease_date(Date release_date) {
         this.release_date = release_date;
     }
 
@@ -149,18 +146,12 @@ public class Movie extends BaseEntity{
         this.actors = actors;
     }
 
-    public int getSchemaVersion() {
-        return schemaVersion;
-    }
-
-    public void setSchemaVersion(int schemaVersion) {
-        this.schemaVersion = schemaVersion;
-    }
-
     @Override
     public String toString() {
         return "Movie{" +
-                "title='" + title + '\'' +
+                "id='" + id + '\'' +
+                ", schema_version=" + schemaVersion +
+                ", title='" + title + '\'' +
                 ", duration='" + duration + '\'' +
                 ", release_date='" + release_date + '\'' +
                 ", synopsis='" + synopsis + '\'' +
@@ -170,7 +161,6 @@ public class Movie extends BaseEntity{
                 ", image_large_uri='" + image_large_uri + '\'' +
                 ", totalReview=" + totalReview +
                 ", actors=" + actors +
-                ", schemaVersion=" + schemaVersion +
                 '}';
     }
 }

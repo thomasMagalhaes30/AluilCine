@@ -12,10 +12,6 @@ import java.util.Date;
  */
 @Document(collection = "movieSessions")
 public class MovieSession extends BaseEntity{
-
-    @Min(0)
-    private int schemaVersion;
-
     @NotNull
     @NotBlank
     private String movieId;
@@ -34,14 +30,6 @@ public class MovieSession extends BaseEntity{
         this.movieId = movieId;
         this.cinemaId = cinemaId;
         this.dateSchedule = date_schedule;
-    }
-
-    public int getSchemaVersion() {
-        return schemaVersion;
-    }
-
-    public void setSchemaVersion(int schemaVersion) {
-        this.schemaVersion = schemaVersion;
     }
 
     public String getMovieId() {
