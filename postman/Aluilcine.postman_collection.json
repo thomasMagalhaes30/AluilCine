@@ -97,7 +97,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{aluilcine-url}}/movies/{{movie-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"{{movie-id}}"
+							]
 						}
 					},
 					"response": []
@@ -109,7 +116,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Mad Max\",\n    \"duration\": \"01:30:33\",\n    \"release_date\": \"1998-12-11T00:00:00.000+00:00\",\n    \"synopsis\": \"synopsis\",\n    \"mark\": 3.7,\n    \"categories\": [\"action\"],\n    \"image_uri\": \"image_uri\",\n    \"image_large_uri\": \"image_large_uri\",\n    \"totalReview\": 0,\n    \"actors\": [],\n    \"schemaVersion\": 0\n}",
+							"raw": "{\n    \"title\": \"Le Visiteur du futur\",\n    \"duration\": \"01:42:00\",\n    \"releaseDate\": \"2022-09-07T00:00:00.000+00:00\",\n    \"synopsis\": \"2555. Dans un futur dévasté, l’apocalypse menace la Terre. Le dernier espoir repose sur un homme capable de voyager dans le temps. Sa mission : retourner dans le passé et changer le cours des événements. Mais la Brigade Temporelle, une police du temps, le traque à chaque époque. Débute alors une course contre la montre pour le Visiteur du Futur… \",\n    \"mark\": 5,\n    \"categories\": [\"action\"],\n    \"imageUri\": \"image_uri\",\n    \"imageLargeUri\": \"image_large_uri\",\n    \"totalReview\": 0,\n    \"actors\": [\n            {\n                \"name\": \"Dorin\",\n                \"firstName\": \"Florent\",\n                \"role\": \"Le Visiteur\",\n                \"imageUrl\": \"https://fr.web.img6.acsta.net/c_310_420/pictures/16/01/19/11/06/274206.jpg\"\n            }\n        ],\n    \"schemaVersion\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -162,13 +169,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{aluilcine-url}}/movies/62a30596ab87a15c7f707700",
+							"raw": "{{aluilcine-url}}/movies/62a339b55a7aca28fb49c8b2",
 							"host": [
 								"{{aluilcine-url}}"
 							],
 							"path": [
 								"movies",
-								"62a30596ab87a15c7f707700"
+								"62a339b55a7aca28fb49c8b2"
 							]
 						}
 					},
@@ -187,6 +194,24 @@
 							"path": [
 								"movies",
 								"top10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LAST MOVIE RELEASE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/last3MovieReleased",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"last3MovieReleased"
 							]
 						}
 					},
@@ -669,7 +694,7 @@
 		},
 		{
 			"key": "movie-id",
-			"value": "62a303c4ab87a15c7f7076fe"
+			"value": "62a3afc341961a57fb485cfb"
 		},
 		{
 			"key": "category-id",

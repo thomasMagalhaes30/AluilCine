@@ -24,7 +24,7 @@ public class Movie extends BaseEntity{
     private String duration;
 
     @NotNull
-    private Date release_date;
+    private Date releaseDate;
 
     @NotNull
     @NotBlank
@@ -39,11 +39,11 @@ public class Movie extends BaseEntity{
 
     @NotNull
     @NotBlank
-    private String image_uri;
+    private String imageUri;
 
     @NotNull
     @NotBlank
-    private String image_large_uri;
+    private String imageLargeUri;
 
     @Min(0)
     @NotNull
@@ -52,18 +52,17 @@ public class Movie extends BaseEntity{
     @NotNull
     private List<Actor> actors;
 
-    public Movie(String title, String duration, Date release_date, String synopsis, Float mark, List<String> categories, String image_uri, String image_large_uri, int totalReview, List<Actor> actors, int schemaVersion) {
+    public Movie(String title, String duration, Date releaseDate, String synopsis, Float mark, List<String> categories, String imageUri, String imageLargeUri, int totalReview, List<Actor> actors) {
         this.title = title;
         this.duration = duration;
-        this.release_date = release_date;
+        this.releaseDate = releaseDate;
         this.synopsis = synopsis;
         this.mark = mark;
         this.categories = categories;
-        this.image_uri = image_uri;
-        this.image_large_uri = image_large_uri;
+        this.imageUri = imageUri;
+        this.imageLargeUri = imageLargeUri;
         this.totalReview = totalReview;
         this.actors = actors;
-        this.schemaVersion = schemaVersion;
     }
 
     public String getTitle() {
@@ -82,12 +81,12 @@ public class Movie extends BaseEntity{
         this.duration = duration;
     }
 
-    public Date getRelease_date() {
-        return release_date;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(Date release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getSynopsis() {
@@ -114,20 +113,20 @@ public class Movie extends BaseEntity{
         this.categories = categories;
     }
 
-    public String getImage_uri() {
-        return image_uri;
+    public String getImageUri() {
+        return imageUri;
     }
 
-    public void setImage_uri(String image_uri) {
-        this.image_uri = image_uri;
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 
-    public String getImage_large_uri() {
-        return image_large_uri;
+    public String getImageLargeUri() {
+        return imageLargeUri;
     }
 
-    public void setImage_large_uri(String image_large_uri) {
-        this.image_large_uri = image_large_uri;
+    public void setImageLargeUri(String imageLargeUri) {
+        this.imageLargeUri = imageLargeUri;
     }
 
     public int getTotalReview() {
@@ -149,16 +148,15 @@ public class Movie extends BaseEntity{
     @Override
     public String toString() {
         return "Movie{" +
-                "id='" + id + '\'' +
-                ", schema_version=" + schemaVersion +
-                ", title='" + title + '\'' +
+                ", id='" + id + '\'' +
+                "title='" + title + '\'' +
                 ", duration='" + duration + '\'' +
-                ", release_date='" + release_date + '\'' +
+                ", releaseDate=" + releaseDate +
                 ", synopsis='" + synopsis + '\'' +
                 ", mark=" + mark +
-                ", category=" + categories +
-                ", image_uri='" + image_uri + '\'' +
-                ", image_large_uri='" + image_large_uri + '\'' +
+                ", categories=" + categories +
+                ", imageUri='" + imageUri + '\'' +
+                ", imageLargeUri='" + imageLargeUri + '\'' +
                 ", totalReview=" + totalReview +
                 ", actors=" + actors +
                 '}';
