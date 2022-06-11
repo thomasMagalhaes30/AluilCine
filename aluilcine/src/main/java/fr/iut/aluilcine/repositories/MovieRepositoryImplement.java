@@ -1,9 +1,11 @@
 package fr.iut.aluilcine.repositories;
 
-import com.mongodb.BasicDBObject;
 import fr.iut.aluilcine.entities.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationUpdate;
+import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.logging.Logger;
+
+import static org.springframework.data.mongodb.core.aggregation.ArithmeticOperators.*;
 
 @Component
 public class MovieRepositoryImplement implements MovieRepositoryCustom{
@@ -20,19 +24,15 @@ public class MovieRepositoryImplement implements MovieRepositoryCustom{
 
 
     /*
-        Requete
-
-        db.movie.findAndModify({
-            query: {_id : ObjectId("62a3afc341961a57fb485cfb")},
+        Resultat MongoDB
+        Calling update using
+            query: { "_id" : { "$oid" : "62a3afc341961a57fb485cfb"}}
+            and
             update: [
-                { $set:
-                    {
-                        mark: { $divide: [ { $add: [ 5, { $multiply: ["$mark", "$totalReview"] } ] }, { $add: [ "$totalReview", 1 ] } ] },
-                        totalReview: { $add: [ "$totalReview", 1 ] }
-                    }
-                }
+                { "$set" : { "mark" : { "$divide" : [{ "$add" : [5, { "$multiply" : ["$mark", "$totalReview"]}]}, { "$add" : ["$totalReview", 1]}]}}},
+                { "$set" : { "totalReview" : { "$add" : ["$totalReview", 1]}}}
             ]
-        })
+        in collection: movie
      */
     @Override
     public void updateMovieByIdAfterAddReview(String movieId, int mark) {
@@ -41,27 +41,12 @@ public class MovieRepositoryImplement implements MovieRepositoryCustom{
         query.addCriteria(Criteria.where("_id").is(movieId));
 
         // on met à jour la note et on increment le nombre de commentaires
-        Update update = new Update();
-        //mark: { $divide: [ { $add: [ 5, { $multiply: ["$mark", "$totalReview"] } ] }, { $add: [ "$totalReview", 1 ] } ] },
-        //update.set("mark", 2f);
-        //update.set("mark", "$totalReview");
-        //update.multiply("mark", query. .getInteger("totalReview") );
+        final AggregationUpdate aggregationUpdate = Aggregation.newUpdate();
+        aggregationUpdate.set("mark").toValue(
+                Divide.valueOf(Add.valueOf(mark).add(Multiply.valueOf("mark").multiplyBy("totalReview")))
+                .divideBy( valueOf("totalReview").add(1) ));
+        aggregationUpdate.inc("totalReview");
 
-        //update.set("mark", update.inc("$totalReview", 1) );
-        //update.set("mark", 2f);
-
-        /*
-        System.out.println("test");
-        System.out.println(update.getUpdateObject());
-        System.out.println(query.getQueryObject());*/
-
-        update.inc("totalReview");
-
-        Movie movie = mongoTemplate.findAndModify(query, update, Movie.class);
-        if (movie == null ) return;
-
-        update = new Update();
-        update.set("mark", (movie.getMark() * movie.getTotalReview() + mark) / (movie.getTotalReview() + 1) );
-        mongoTemplate.updateMulti(query, update, Movie.class);
+        mongoTemplate.update(Movie.class).matching(query).apply(aggregationUpdate).all();
     }
 }
