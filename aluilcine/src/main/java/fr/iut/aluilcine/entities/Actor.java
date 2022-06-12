@@ -12,6 +12,8 @@ public class Actor {
 
     public String imageUrl;
 
+    public Actor() { }
+
     public Actor(String name, String firstName, String role, String imageUrl) {
         this.name = name;
         this.firstName = firstName;

@@ -15,6 +15,8 @@ public class Category extends BaseEntity {
     @Size(min=2, max = 128)
     private String nom;
 
+    public Category() {}
+
     public Category(String nom, int schemaVersion) {
         this.nom = nom;
         this.schemaVersion = schemaVersion;

@@ -52,6 +52,9 @@ public class Movie extends BaseEntity{
     @NotNull
     private List<Actor> actors;
 
+    public Movie() {
+    }
+
     public Movie(String title, String duration, Date releaseDate, String synopsis, Float mark, List<String> categories, String imageUri, String imageLargeUri, int totalReview, List<Actor> actors) {
         this.title = title;
         this.duration = duration;
