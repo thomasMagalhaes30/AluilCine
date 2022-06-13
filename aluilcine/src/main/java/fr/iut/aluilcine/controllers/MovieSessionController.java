@@ -12,9 +12,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 @RestController
 @RequestMapping("/moviesessions")

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.OK;
@@ -68,7 +70,6 @@ public class CinemaController extends BaseController<Cinema, CinemaRepository> {
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(cinemas,OK);
-        // return new ResponseEntity<>(repository.getAllByLocationInternal((float) (latitude-3.14), (float) (latitude+3.14), (float) (longitude-3.14), (float) (longitude +3.14)),OK);
     }
 }
 
