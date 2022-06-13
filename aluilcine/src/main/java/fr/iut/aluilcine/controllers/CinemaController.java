@@ -38,6 +38,7 @@ public class CinemaController extends BaseController<Cinema, CinemaRepository> {
     protected Optional<ResponseEntity<?>> beforeDelete(String entityDeleteId) {
         movieSessionRepository.deleteByCinemaId(entityDeleteId);
         return Optional.empty();
+    }
 
     private static class CinemaDistance {
         public Cinema cinema;
