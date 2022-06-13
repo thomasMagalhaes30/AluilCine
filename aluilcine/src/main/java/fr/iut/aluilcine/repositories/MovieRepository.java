@@ -19,4 +19,6 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
 
     Page<Movie> findByReleaseDateBeforeOrderByReleaseDateDesc(Date to, Pageable pageable);
 
+    @Query("{'categories': ?0}")
+    Page<Movie> findByCategories(String category, Pageable pageable);
 }
