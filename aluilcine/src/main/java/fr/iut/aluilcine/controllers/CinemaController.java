@@ -1,13 +1,22 @@
 package fr.iut.aluilcine.controllers;
 
 import fr.iut.aluilcine.entities.Cinema;
+import fr.iut.aluilcine.entities.MovieSession;
+import fr.iut.aluilcine.entities.Review;
 import fr.iut.aluilcine.repositories.CinemaRepository;
+import fr.iut.aluilcine.repositories.MovieSessionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Iterator;
+import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -21,6 +30,14 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/cinemas")
 public class CinemaController extends BaseController<Cinema, CinemaRepository> {
+
+    @Autowired
+    MovieSessionRepository movieSessionRepository;
+
+    @Override
+    protected Optional<ResponseEntity<?>> beforeDelete(String entityDeleteId) {
+        movieSessionRepository.deleteByCinemaId(entityDeleteId);
+        return Optional.empty();
 
     private static class CinemaDistance {
         public Cinema cinema;
