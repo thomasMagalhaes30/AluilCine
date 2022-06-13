@@ -1,11 +1,12 @@
 package fr.iut.aluilcine.controllers;
 
-
 import fr.iut.aluilcine.entities.Movie;
 import fr.iut.aluilcine.repositories.MovieRepository;
 import fr.iut.aluilcine.repositories.MovieSessionRepository;
 import fr.iut.aluilcine.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,12 +36,12 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
         return Optional.empty();
     }
 
-    @GetMapping("/top{number}")
+    @GetMapping("/pageableByMark{number}")
     public ResponseEntity<?> top(@PathVariable("number") int number,
                                  @RequestParam(value = "page", required = false) Integer page){
         try {
-            if(number <= 0 || number > 20)
-                return new ResponseEntity<>("Le nombre doit être entre 1 et 20",NOT_ACCEPTABLE);
+            if(number <= 0)
+                return new ResponseEntity<>("Le nombre doit être supérieur à 0",NOT_ACCEPTABLE);
 
             if(page == null){
                 PageRequest request = PageRequest.of(0,number);
@@ -51,7 +52,7 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
                 return new ResponseEntity<>("Le numero de la page doit être positif",NOT_ACCEPTABLE);
 
             PageRequest request = PageRequest.of(page,number);
-            return new ResponseEntity<>(repository.findByOrderByMarkDesc(request).getContent(), OK);
+            return new ResponseEntity<>(repository.findByOrderByMarkDesc(request), OK);
 
         }catch (Exception e){
             customLogError(e.getMessage());
@@ -68,6 +69,37 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
 
             PageRequest request = PageRequest.of(0,number);
             return new ResponseEntity<>(repository.findByReleaseDateBeforeOrderByReleaseDateDesc(new Date(),request).getContent(), OK);
+
+        }catch (Exception e){
+            customLogError(e.getMessage());
+        }
+        return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/pageableByCategory/{category}")
+    public ResponseEntity<?> movieByCategory(@PathVariable("category") String category,
+                                             @RequestParam(value = "page", required = false) Integer page,
+                                             @RequestParam(value = "numberOfMovieByPage", required = false) Integer numberOfMovieByPage){
+        try {
+
+            if(page == null &&numberOfMovieByPage != null){
+                PageRequest request = PageRequest.of(0,numberOfMovieByPage);
+                return new ResponseEntity<>(repository.findByCategories(category, request).getContent(), OK);
+            }
+
+            if(page == null &&numberOfMovieByPage == null){
+                PageRequest request = PageRequest.of(0,20);
+                return new ResponseEntity<>(repository.findByCategories(category, request).getContent(), OK);
+            }
+
+            if(numberOfMovieByPage <= 0)
+                return new ResponseEntity<>("Le nombre de film doit être supérieur à 0",NOT_ACCEPTABLE);
+
+            if(page < 0)
+                return new ResponseEntity<>("Le numero de la page doit être positif",NOT_ACCEPTABLE);
+
+            PageRequest request = PageRequest.of(page,numberOfMovieByPage);
+            return new ResponseEntity<>(repository.findByCategories(category, request), OK);
 
         }catch (Exception e){
             customLogError(e.getMessage());

@@ -182,18 +182,18 @@
 					"response": []
 				},
 				{
-					"name": "TOP",
+					"name": "PAGEABLE BY MARK",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{aluilcine-url}}/movies/top10",
+							"raw": "{{aluilcine-url}}/movies/pageableByMark10",
 							"host": [
 								"{{aluilcine-url}}"
 							],
 							"path": [
 								"movies",
-								"top10"
+								"pageableByMark10"
 							]
 						}
 					},
@@ -212,6 +212,35 @@
 							"path": [
 								"movies",
 								"last3MovieReleased"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PAGEABLE BY CATEGORY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/pageableByCategory/Action?numberOfMovieByPage=3&page=1",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"pageableByCategory",
+								"Action"
+							],
+							"query": [
+								{
+									"key": "numberOfMovieByPage",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
