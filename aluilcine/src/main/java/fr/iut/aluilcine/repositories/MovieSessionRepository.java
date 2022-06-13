@@ -15,4 +15,6 @@ public interface MovieSessionRepository extends MongoRepository<MovieSession, St
 
     @Query("{'cinemaId': ?0, 'movieId': ?1}")
     List<MovieSession> findByCinemaIdAndMovieId(String cinemaId, String movieId);
+
+    void deleteByCinemaId(String cinemaId);
 }
