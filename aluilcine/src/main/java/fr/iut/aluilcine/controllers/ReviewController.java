@@ -2,14 +2,15 @@
 package fr.iut.aluilcine.controllers;
 
 import fr.iut.aluilcine.entities.Review;
-import fr.iut.aluilcine.repositories.MovieRepository;
 import fr.iut.aluilcine.repositories.MovieRepositoryCustom;
 import fr.iut.aluilcine.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -24,12 +25,30 @@ public class ReviewController extends BaseController<Review, ReviewRepository>{
     MovieRepositoryCustom movieRepositoryCustom;
 
     @Override
-    public boolean afterAdd(Review entityAdd) {
+    protected Optional<ResponseEntity<?>> afterAdd(Review entityAdd) {
         movieRepositoryCustom.updateMovieByIdAfterAddReview(entityAdd.getMovieId(), entityAdd.getMark());
-        return true;
+        return Optional.empty();
     }
 
+    @Override
+    protected Optional<ResponseEntity<?>> beforeUpdate(Review oldEntity, Review newEntity) {
+        // règle métier
+        if (!Objects.equals(oldEntity.getMovieId(), newEntity.getMovieId()))
+            return Optional.of(new ResponseEntity<>("movieId de l'ancienne version et de la nouvelle différente (REGLE METIER)", UNPROCESSABLE_ENTITY));
 
+        movieRepositoryCustom.updateMovieByIdAfterUpdateReview(oldEntity.getMovieId(), oldEntity.getMark(), newEntity.getMark());
+        return Optional.empty();
+    }
+
+    @Override
+    protected Optional<ResponseEntity<?>> beforeDelete(String entityDeleteId) {
+        Optional<Review> opt = repository.findById(entityDeleteId);
+        if (opt.isEmpty())
+            return Optional.of(new ResponseEntity<>(NOT_FOUND));
+        Review entityDelete = opt.get();
+        movieRepositoryCustom.updateMovieByIdAfterDeleteReview(entityDelete.getMovieId(), entityDelete.getMark());
+        return Optional.empty();
+    }
 
     @GetMapping("/pageableByMovieId")
     public ResponseEntity<?> getReviewsByMovieIdByPage(@RequestParam(value = "movieId") String movieId,

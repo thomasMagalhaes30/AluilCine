@@ -32,7 +32,7 @@ public class Movie extends BaseEntity{
 
     @Min(0)
     @Max(5)
-    private Float mark;
+    private float mark;
 
     @NotNull
     private List<String> categories;
@@ -55,7 +55,20 @@ public class Movie extends BaseEntity{
     public Movie() {
     }
 
-    public Movie(String title, String duration, Date releaseDate, String synopsis, Float mark, List<String> categories, String imageUri, String imageLargeUri, int totalReview, List<Actor> actors) {
+    public Movie(String title, String duration, Date releaseDate, String synopsis, List<String> categories, String imageUri, String imageLargeUri, List<Actor> actors) {
+        this.title = title;
+        this.duration = duration;
+        this.releaseDate = releaseDate;
+        this.synopsis = synopsis;
+        this.categories = categories;
+        this.imageUri = imageUri;
+        this.imageLargeUri = imageLargeUri;
+        this.actors = actors;
+        this.mark = 0f;
+        this.totalReview = 0;
+    }
+
+    public Movie(String title, String duration, Date releaseDate, String synopsis, float mark, List<String> categories, String imageUri, String imageLargeUri, int totalReview, List<Actor> actors) {
         this.title = title;
         this.duration = duration;
         this.releaseDate = releaseDate;
@@ -100,11 +113,11 @@ public class Movie extends BaseEntity{
         this.synopsis = synopsis;
     }
 
-    public Float getMark() {
+    public float getMark() {
         return mark;
     }
 
-    public void setMark(Float mark) {
+    public void setMark(float mark) {
         this.mark = mark;
     }
 

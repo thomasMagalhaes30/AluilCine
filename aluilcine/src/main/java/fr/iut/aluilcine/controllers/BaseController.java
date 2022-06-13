@@ -61,6 +61,7 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
 //         ██      ██   ██ ██    ██ ██   ██
 //          ██████ ██   ██  ██████  ██████
 
+
     @GetMapping("")
     public ResponseEntity<List<TEntity>> getAll() {
         try {
@@ -94,7 +95,13 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
                 return new ResponseEntity<>(optValidation.get(), UNPROCESSABLE_ENTITY);
             }
             TEntity entitySave = repository.save(entity);
-            afterAdd(entitySave);
+
+            // CUSTOM ACTION IN ADD
+            Optional<ResponseEntity<?>> optAfterAdd = afterAdd(entitySave);
+            if (optAfterAdd.isPresent()){
+                return optAfterAdd.get();
+            }
+
             return new ResponseEntity<>(entitySave, CREATED);
         }catch (Exception e){
             customLogError(e.getMessage());
@@ -118,6 +125,12 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
             // s'assure qu'on est le même id dans l'objet qu'en paramètre
             entity.setId(opt.get().getId());
 
+            // CUSTOM ACTION IN UPDATE
+            Optional<ResponseEntity<?>> optBeforeUpdate = beforeUpdate(opt.get(), entity);
+            if (optBeforeUpdate.isPresent()){
+                return optBeforeUpdate.get();
+            }
+
             return new ResponseEntity<>(repository.save(entity), HttpStatus.OK);
         }catch (Exception e){
             customLogError(e.getMessage());
@@ -126,8 +139,14 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteOne(@PathVariable("id") String id) {
+    public ResponseEntity<?> deleteOne(@PathVariable("id") String id) {
         try {
+            // CUSTOM ACTION IN DELETE
+            Optional<ResponseEntity<?>> optBeforeDelete = beforeDelete(id);
+            if (optBeforeDelete.isPresent()){
+                return optBeforeDelete.get();
+            }
+
             repository.deleteById(id);
             return new ResponseEntity<>(NO_CONTENT);
         } catch (Exception e) {
@@ -136,7 +155,37 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
-    public boolean afterAdd(TEntity entityAdd){
-        return true;
+//
+//
+// UTILS
+//
+//
+//
+
+
+    /**
+     * Méthode appellé après l'ajout de l'entité
+     * @param entityAdd l'entité ajouté
+     * @return un optional d'un response entity vide si rien a faire, rempli si on souhaite effectué une action
+     */
+    protected Optional<ResponseEntity<?>> afterAdd(TEntity entityAdd){
+        return Optional.empty();
+    }
+
+    /**
+     * Méthode appellé avant la modification de l'entité
+     * @param oldEntity l'entité avant update
+     * @param newEntity l'entité après update
+     */
+    protected Optional<ResponseEntity<?>> beforeUpdate(TEntity oldEntity,TEntity newEntity){
+        return Optional.empty();
+    }
+
+    /**
+     * Méthode appellé avant la suppression de l'entité
+     * @param entityDeleteId l'identifiant de l'entité qui va être supprimé
+     */
+    protected Optional<ResponseEntity<?>> beforeDelete(String entityDeleteId){
+        return Optional.empty();
     }
 }
