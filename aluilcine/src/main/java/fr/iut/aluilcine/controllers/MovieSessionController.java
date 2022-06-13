@@ -12,9 +12,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 @RestController
 @RequestMapping("/moviesessions")
@@ -24,6 +26,15 @@ public class MovieSessionController extends BaseController<MovieSession, MovieSe
     
     private final ZoneId defaultZoneId = ZoneId.systemDefault();
 
+    /**
+     * Obten tout les horaires de film avec certaines conditions préalable
+     * @param day le jour de l'horaire au format (dd-MM-yyy) par exemple (23-08-2019)
+     * @param cinemaId l'identifiant du cinema
+     * @param movieId l'identifiant du film
+     * @return Une ResponseEntity :
+     *                             - Une List de Cinema en cas de succès
+     *                             - Un message d'erreur dans le cas d'une DateTimeParseException
+     */
     @GetMapping("/condition")
     public ResponseEntity<?> getAll(@RequestParam(value = "date", required = false) String day,
                                     @RequestParam(value = "cinemaId", required = false) String cinemaId,
