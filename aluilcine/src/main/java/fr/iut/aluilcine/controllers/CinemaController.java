@@ -47,7 +47,7 @@ public class CinemaController extends BaseController<Cinema, CinemaRepository> {
         if (limit == null)
             limit = 5; // par défaut la limite est 5
 
-        System.out.println("latitude : " + latitude  + ", longitude : " + longitude);
+        logger.info("latitude : " + latitude  + ", longitude : " + longitude);
 
         List<Cinema> cinemas = repository.findAll();
         List<CinemaDistance> cinemaDistances = new ArrayList<>();
@@ -59,7 +59,7 @@ public class CinemaController extends BaseController<Cinema, CinemaRepository> {
 
             double rayon = Math.sqrt(Math.pow(cLatitude-latitude,2) - Math.pow(cLongitude-longitude,2));
 
-            System.out.println("Rayon calculé pour " + c.getName() + " est de : " + rayon);
+            logger.info("Rayon calculé pour " + c.getName() + " est de : " + rayon);
             cinemaDistances.add(new CinemaDistance(c, rayon));
         }
 
