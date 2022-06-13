@@ -11,8 +11,6 @@ import javax.validation.constraints.Size;
  */
 @Document(collection = "user")
 public class User extends BaseEntity {
-    private int schemaVersion;
-
     @NotBlank
     @Size(min=2, max = 128)
     private String pseudo;
@@ -32,14 +30,6 @@ public class User extends BaseEntity {
         this.pseudo = pseudo;
         this.email = email;
         this.password = password;
-    }
-
-    public int getSchemaVersion() {
-        return schemaVersion;
-    }
-
-    public void setSchemaVersion(int schemaVersion) {
-        this.schemaVersion = schemaVersion;
     }
 
     public String getPseudo() {

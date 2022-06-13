@@ -12,9 +12,6 @@ import javax.validation.constraints.*;
 @Document(collection = "cinema")
 public class Cinema extends BaseEntity{
 
-    @Min(0)
-    private int schemaVersion;
-
     @NotBlank
     @NotNull
     @Size(min=2,max=128)
@@ -44,14 +41,6 @@ public class Cinema extends BaseEntity{
         this.location = location;
         this.longitude = longitude;
         this.latitude = latitude;
-    }
-
-    public int getSchemaVersion() {
-        return schemaVersion;
-    }
-
-    public void setSchemaVersion(int schemaVersion) {
-        this.schemaVersion = schemaVersion;
     }
 
     public String getName() {
@@ -89,6 +78,7 @@ public class Cinema extends BaseEntity{
     @java.lang.Override
     public java.lang.String toString() {
         return "Cinema{" +
+                "id='" + id + '\'' +
                 ", schemaVersion=" + schemaVersion +
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +

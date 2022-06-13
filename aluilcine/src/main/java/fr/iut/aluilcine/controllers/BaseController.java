@@ -93,7 +93,9 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
             if (optValidation.isPresent()) {
                 return new ResponseEntity<>(optValidation.get(), UNPROCESSABLE_ENTITY);
             }
-            return new ResponseEntity<>(repository.save(entity), CREATED);
+            TEntity entitySave = repository.save(entity);
+            afterAdd(entitySave);
+            return new ResponseEntity<>(entitySave, CREATED);
         }catch (Exception e){
             customLogError(e.getMessage());
         }
@@ -132,5 +134,9 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
             customLogError(e.getMessage());
         }
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+    }
+
+    public boolean afterAdd(TEntity entityAdd){
+        return true;
     }
 }

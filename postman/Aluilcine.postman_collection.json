@@ -1,10 +1,76 @@
 {
 	"info": {
-		"_postman_id": "7b94a070-a76f-45fc-8283-8ccc50c4ea28",
+		"_postman_id": "2d500f32-7971-4868-b7c7-49c5d4cf3b39",
 		"name": "Aluilcine",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Hello",
+			"item": [
+				{
+					"name": "hello",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/hello",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hello - env",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/hello/env",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"hello",
+								"env"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hello",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Antoine",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/hello",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Movie",
 			"item": [
@@ -31,7 +97,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{aluilcine-url}}/movies/{{movie-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"{{movie-id}}"
+							]
 						}
 					},
 					"response": []
@@ -43,7 +116,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"0072\",\n    \"duration\": \"01:30:33\",\n    \"release_date\": \"12/12/2022\",\n    \"synopsis\": \"synopsis\",\n    \"mark\": 4.0,\n    \"categories\": [],\n    \"image_uri\": \"image_uri\",\n    \"image_large_uri\": \"image_large_uri\",\n    \"totalReview\": 0,\n    \"actors\": [],\n    \"schemaVersion\": 0\n}",
+							"raw": "{\n    \"schemaVersion\": 0,\n    \"title\": \"Mad Max\",\n    \"duration\": \"01:30:33\",\n    \"releaseDate\": 913334400000,\n    \"synopsis\": \"synopsis\",\n    \"mark\": 3.5612903,\n    \"categories\": [\n        \"action\"\n    ],\n    \"imageUri\": \"image_uri\",\n    \"imageLargeUri\": \"image_large_uri\",\n    \"totalReview\": 12,\n    \"actors\": [\n        {\n            \"name\": \"Hardy\",\n            \"firstName\": \"tom\",\n            \"role\": \"mad max\",\n            \"imageUrl\": \"https://fr.web.img6.acsta.net/c_310_420/pictures/16/01/19/11/06/274206.jpg\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -70,7 +143,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"0078\",\n    \"duration\": \"01:30:33\",\n    \"release_date\": \"12/12/2022\",\n    \"synopsis\": \"synopsis\",\n    \"mark\": 4.0,\n    \"categories\": [],\n    \"image_uri\": \"image_uri\",\n    \"image_large_uri\": \"image_large_uri\",\n    \"totalReview\": 0,\n    \"actors\": [],\n    \"schemaVersion\": 0\n}",
+							"raw": "{\n    \"schemaVersion\": 0,\n    \"title\": \"Mad Max\",\n    \"duration\": \"01:30:33\",\n    \"releaseDate\": 913334400000,\n    \"synopsis\": \"synopsis\",\n    \"mark\": 3.5612903,\n    \"categories\": [\n        \"action\"\n    ],\n    \"imageUri\": \"image_uri\",\n    \"imageLargeUri\": \"image_large_uri\",\n    \"totalReview\": 12,\n    \"actors\": [\n        {\n            \"name\": \"Hardy\",\n            \"firstName\": \"tom\",\n            \"role\": \"mad max\",\n            \"imageUrl\": \"https://fr.web.img6.acsta.net/c_310_420/pictures/16/01/19/11/06/274206.jpg\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,13 +169,49 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{aluilcine-url}}/movies/62a30596ab87a15c7f707700",
+							"raw": "{{aluilcine-url}}/movies/62a339b55a7aca28fb49c8b2",
 							"host": [
 								"{{aluilcine-url}}"
 							],
 							"path": [
 								"movies",
-								"62a30596ab87a15c7f707700"
+								"62a339b55a7aca28fb49c8b2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TOP",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/top10",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"top10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LAST MOVIE RELEASE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/last3MovieReleased",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"last3MovieReleased"
 							]
 						}
 					},
@@ -333,72 +442,6 @@
 			]
 		},
 		{
-			"name": "Hello",
-			"item": [
-				{
-					"name": "hello",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{aluilcine-url}}/hello",
-							"host": [
-								"{{aluilcine-url}}"
-							],
-							"path": [
-								"hello"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "hello - env",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{aluilcine-url}}/hello/env",
-							"host": [
-								"{{aluilcine-url}}"
-							],
-							"path": [
-								"hello",
-								"env"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "hello",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Antoine",
-							"options": {
-								"raw": {
-									"language": "text"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{aluilcine-url}}/hello",
-							"host": [
-								"{{aluilcine-url}}"
-							],
-							"path": [
-								"hello"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Cinema",
 			"item": [
 				{
@@ -545,7 +588,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nom\": \"Thriller\",\n    \"schemaVersion\": 1\n}",
+							"raw": "{\n    \"nom\": \"\",\n    \"schemaVersion\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -571,7 +614,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nom\":\"CouOCu\",\n    \"schemaVersion\": 1\n}",
+							"raw": "{\n    \"nom\":\"Modifier par update\",\n    \"schemaVersion\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -651,11 +694,11 @@
 		},
 		{
 			"key": "movie-id",
-			"value": "62a303c4ab87a15c7f7076fe"
+			"value": "62a3afc341961a57fb485cfb"
 		},
 		{
 			"key": "category-id",
-			"value": "62a30389dc403538ab34fc98"
+			"value": "62a314e8362eb528e9cd1e9c"
 		}
 	]
 }

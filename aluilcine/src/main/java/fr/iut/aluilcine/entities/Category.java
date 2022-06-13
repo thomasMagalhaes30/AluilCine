@@ -1,8 +1,21 @@
 package fr.iut.aluilcine.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+
+/**
+ * Represente une catégorie
+ */
+@Document(collection = "category")
 public class Category extends BaseEntity {
+    @NotBlank
+    @Size(min=2, max = 128)
     private String nom;
-    private int schemaVersion;
+
+    public Category() {}
 
     public Category(String nom, int schemaVersion) {
         this.nom = nom;
@@ -17,15 +30,12 @@ public class Category extends BaseEntity {
         this.nom = nom;
     }
 
-    public int getSchemaVersion() {
-        return schemaVersion;
-    }
-
     @Override
     public String toString() {
         return "Category{" +
-                "nom='" + nom + '\'' +
+                "id='" + id + '\'' +
                 ", schemaVersion=" + schemaVersion +
+                ", nom='" + nom + '\'' +
                 '}';
     }
 }
