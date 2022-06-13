@@ -17,4 +17,6 @@ public interface MovieSessionRepository extends MongoRepository<MovieSession, St
     List<MovieSession> findByCinemaIdAndMovieId(String cinemaId, String movieId);
 
     void deleteByCinemaId(String cinemaId);
+
+    void deleteByMovieId(String movieId);
 }

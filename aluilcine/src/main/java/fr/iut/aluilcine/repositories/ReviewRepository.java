@@ -12,5 +12,5 @@ public interface ReviewRepository extends MongoRepository<Review, String> {
 
     Page<Review> findByMovieId(String movieId,Pageable pageable);
 
-
+    void deleteByMovieId(String movieId);
 }

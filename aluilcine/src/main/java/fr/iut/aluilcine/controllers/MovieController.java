@@ -3,11 +3,15 @@ package fr.iut.aluilcine.controllers;
 
 import fr.iut.aluilcine.entities.Movie;
 import fr.iut.aluilcine.repositories.MovieRepository;
+import fr.iut.aluilcine.repositories.MovieSessionRepository;
+import fr.iut.aluilcine.repositories.ReviewRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -17,6 +21,19 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 @RequestMapping("/movies")
 public class MovieController extends BaseController<Movie, MovieRepository> {
+
+    @Autowired
+    ReviewRepository reviewRepository;
+
+    @Autowired
+    MovieSessionRepository movieSessionRepository;
+
+    @Override
+    protected Optional<ResponseEntity<?>> beforeDelete(String entityDeleteId) {
+        movieSessionRepository.deleteByMovieId(entityDeleteId);
+        reviewRepository.deleteByMovieId(entityDeleteId);
+        return Optional.empty();
+    }
 
     @GetMapping("/top{number}")
     public ResponseEntity<?> top(@PathVariable("number") int number,
