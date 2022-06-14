@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2d500f32-7971-4868-b7c7-49c5d4cf3b39",
+		"_postman_id": "24aad461-895b-4742-b797-91c530e098ab",
 		"name": "Aluilcine",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -241,6 +241,24 @@
 									"key": "page",
 									"value": "1"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MARK AVG BY CATEGORIES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/markAvgByCategories",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"markAvgByCategories"
 							]
 						}
 					},
@@ -723,7 +741,7 @@
 		},
 		{
 			"key": "movie-id",
-			"value": "62a3afc341961a57fb485cfb"
+			"value": "62a3b25441961a57fb485cfd"
 		},
 		{
 			"key": "category-id",

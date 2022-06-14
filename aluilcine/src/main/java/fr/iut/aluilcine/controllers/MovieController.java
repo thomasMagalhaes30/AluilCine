@@ -1,9 +1,7 @@
 package fr.iut.aluilcine.controllers;
 
 import fr.iut.aluilcine.entities.Movie;
-import fr.iut.aluilcine.repositories.MovieRepository;
-import fr.iut.aluilcine.repositories.MovieSessionRepository;
-import fr.iut.aluilcine.repositories.ReviewRepository;
+import fr.iut.aluilcine.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +27,9 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
     @Autowired
     MovieSessionRepository movieSessionRepository;
 
+    @Autowired
+    MovieRepositoryCustom movieRepositoryCustom;
+
     @Override
     protected Optional<ResponseEntity<?>> beforeDelete(String entityDeleteId) {
         movieSessionRepository.deleteByMovieId(entityDeleteId);
@@ -36,6 +37,16 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
         return Optional.empty();
     }
 
+    /**
+     * Obtient les films avec la meilleure note
+     * @param number Nombre de film à retourné
+     * @param page Paramètre non obligatoire, défini la page désiré
+     * @return Une ResponseEntity :
+     *                             - Une List de Movie en cas de succès si le page est null
+     *                             - Une Pageable de Movie en cas de succès
+     *                             - Un message d'erreur dans le cas où number est inférieur à 0
+     *                             - Un message d'erreur dans le cas où page est inférieur à 0
+     */
     @GetMapping("/pageableByMark{number}")
     public ResponseEntity<?> top(@PathVariable("number") int number,
                                  @RequestParam(value = "page", required = false) Integer page){
@@ -60,7 +71,14 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
-
+    /**
+     * Obtient les derniers films sortie
+     * @param number Nombre de film à retourné. Il doit être entre 0 et 20.
+     * @return Une ResponseEntity :
+     *                             - Une List de Movie en cas de succès
+     *                             - Un message d'erreur dans le cas où number est inférieur ou égale à 0 et
+     *                                  supérieur à 20
+     */
     @GetMapping("/last{number}MovieReleased")
     public ResponseEntity<?> lastMovieReleased(@PathVariable("number") int number){
         try {
@@ -76,6 +94,18 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     *  Obtient les films ayant une certaines catégories
+     * @param category Catégorie rechercher
+     * @param page Paramètre non obligatoire, défini la page désiré
+     * @param numberOfMovieByPage Paramètre non obligatoire, défini le nombre de film par page
+     * @return Une ResponseEntity :
+     *                             - Une List de Movie en cas de succès si le page est null et/ou le
+     *                                  numberOfMovieByPage est null
+     *                             - Une Pageable de Movie en cas de succès
+     *                             - Un message d'erreur dans le cas où numberOfMovieByPage est inférieur à 0
+     *                             - Un message d'erreur dans le cas où page est inférieur à 0
+     */
     @GetMapping("/pageableByCategory/{category}")
     public ResponseEntity<?> movieByCategory(@PathVariable("category") String category,
                                              @RequestParam(value = "page", required = false) Integer page,
@@ -107,4 +137,20 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Obtient les notes moyenne par categorie
+     * @return Une ResponseEntity :
+     *                             - Une List de MovieAggregate
+     *                             - Un message d'erreur en cas d'erreur
+     */
+    @GetMapping("/markAvgByCategories")
+    public ResponseEntity<?> markAvgByCategories() {
+        try {
+            System.out.println("Controller");
+            return new ResponseEntity<>(movieRepositoryCustom.markAvgByCategories(), OK);
+        }catch (Exception e){
+            customLogError(e.getMessage());
+        }
+        return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+    }
 }

@@ -1,5 +1,11 @@
 package fr.iut.aluilcine.repositories;
 
+import fr.iut.aluilcine.entities.Movie;
+import fr.iut.aluilcine.entities.MovieAggregate;
+import org.springframework.http.ResponseEntity;
+
+import java.util.List;
+
 public interface MovieRepositoryCustom{
 
     /**
@@ -23,4 +29,10 @@ public interface MovieRepositoryCustom{
      * @param mark note à retirer
      */
     void updateMovieByIdAfterDeleteReview(String movieId, int mark);
+
+    /**
+     * Obtient les notes moyenne par categorie
+     * @return Une List de MovieAggregate
+     */
+    List<MovieAggregate> markAvgByCategories();
 }

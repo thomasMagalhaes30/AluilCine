@@ -1,16 +1,25 @@
 package fr.iut.aluilcine.repositories;
 
 import fr.iut.aluilcine.entities.Movie;
+import fr.iut.aluilcine.entities.MovieAggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationExpression;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.AggregationUpdate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 import static org.springframework.data.mongodb.core.aggregation.ArithmeticOperators.*;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.OK;
 
 @Component
 public class MovieRepositoryImplement implements MovieRepositoryCustom{
@@ -76,5 +85,22 @@ public class MovieRepositoryImplement implements MovieRepositoryCustom{
                 valueOf(Multiply.valueOf("mark").multiplyBy("totalReview")).subtract(mark),
                 valueOf("totalReview").subtract(1)
         );
+    }
+
+    /**
+     * Obtient les notes moyenne par categorie
+     * @return Une List de MovieAggregate
+     */
+    @GetMapping("/markAvgByCategories")
+    public List<MovieAggregate> markAvgByCategories() {
+        System.out.println("repo");
+        final Aggregation agg = newAggregation(
+                unwind("categories"),
+                group("categories").avg("mark").as("mark")
+        );
+
+        AggregationResults<MovieAggregate> results = mongoTemplate.aggregate(agg, "movie", MovieAggregate.class);
+        List<MovieAggregate> avg = results.getMappedResults();
+        return avg;
     }
 }
