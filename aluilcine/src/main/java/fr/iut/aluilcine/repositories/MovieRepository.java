@@ -15,10 +15,27 @@ import java.util.List;
  */
 public interface MovieRepository extends MongoRepository<Movie, String> {
 
+    /**
+     * Cherche les films par note décroissante (les films les mieux notés en premier)
+     * @param pageable pagination
+     * @return une page de film
+     */
     Page<Movie> findByOrderByMarkDesc(Pageable pageable);
 
+    /**
+     * Cherche les films par date de sorti décroissante (les films les plus recent en premier)
+     * @param to la date maximum possible (éviter de donner les films pas encore sortie)
+     * @param pageable pagination
+     * @return une page de film
+     */
     Page<Movie> findByReleaseDateBeforeOrderByReleaseDateDesc(Date to, Pageable pageable);
 
+    /**
+     * Cherche les films par catégorie
+     * @param category nom de la catégorie
+     * @param pageable pagination
+     * @return une page de film
+     */
     @Query("{'categories': ?0}")
     Page<Movie> findByCategories(String category, Pageable pageable);
 }

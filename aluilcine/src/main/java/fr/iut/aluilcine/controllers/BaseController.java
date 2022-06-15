@@ -49,6 +49,10 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
         return Optional.of(String.format("%s %s\n",violation.getPropertyPath(), violation.getMessage()));
     }
 
+    /**
+     * Affiche a l'aide du logger un log d'erreur custom
+     * @param e le message d'erreur
+     */
     protected void customLogError(String e){
         logger.error(
             String.format("Error in %s => %s\n%s", this.getClass().getName(), Thread.currentThread().getStackTrace()[2].getMethodName(), e)
@@ -61,7 +65,10 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
 //         ██      ██   ██ ██    ██ ██   ██
 //          ██████ ██   ██  ██████  ██████
 
-
+    /**
+     * Obtient les entites
+     * @return les entites si ok
+     */
     @GetMapping("")
     public ResponseEntity<List<TEntity>> getAll() {
         try {
@@ -72,6 +79,11 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Obtient une entite a partir de son identifiant
+     * @param id identifiant de l'entite a modifier
+     * @return l'entite si ok
+     */
     @GetMapping("/{id}")
     public ResponseEntity<TEntity> getOneById(@PathVariable("id") String id){
         try {
@@ -86,6 +98,11 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Ajoute une entite
+     * @param entity l'entite a ajouter
+     * @return l'entite sauvegarde si created
+     */
     @PostMapping("")
     public ResponseEntity<?> addOne(@RequestBody TEntity entity){
         try {
@@ -109,6 +126,12 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Met a jour une entite
+     * @param id identifiant de l'entite a modifier
+     * @param entity l'entite a utilser pour la mise a jour
+     * @return l'entite sauvegarde si ok
+     */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateOne(@PathVariable("id") String id, @RequestBody TEntity entity) {
         try {
@@ -138,6 +161,11 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Supprime une entite a partir de son identifiant
+     * @param id identifiant de l'entite a supprimer
+     * @return rien si no_content
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOne(@PathVariable("id") String id) {
         try {
@@ -155,18 +183,16 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 
-//
-//
-// UTILS
-//
-//
-//
-
+//        ██    ██ ████████ ██ ██      ███████
+//        ██    ██    ██    ██ ██      ██
+//        ██    ██    ██    ██ ██      ███████
+//        ██    ██    ██    ██ ██           ██
+//         ██████     ██    ██ ███████ ███████
 
     /**
      * Méthode appellé après l'ajout de l'entité
      * @param entityAdd l'entité ajouté
-     * @return un optional d'un response entity vide si rien a faire, rempli si on souhaite effectué une action
+     * @return un optional d'une response entity vide si il y a rien a faire, rempli si on souhaite effectué une action
      */
     protected Optional<ResponseEntity<?>> afterAdd(TEntity entityAdd){
         return Optional.empty();
@@ -176,6 +202,7 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
      * Méthode appellé avant la modification de l'entité
      * @param oldEntity l'entité avant update
      * @param newEntity l'entité après update
+     * @return un optional d'une response entity vide si il y a rien a faire, rempli si on souhaite effectué une action
      */
     protected Optional<ResponseEntity<?>> beforeUpdate(TEntity oldEntity,TEntity newEntity){
         return Optional.empty();
@@ -184,6 +211,7 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
     /**
      * Méthode appellé avant la suppression de l'entité
      * @param entityDeleteId l'identifiant de l'entité qui va être supprimé
+     * @return un optional d'une response entity vide si il y a rien a faire, rempli si on souhaite effectué une action
      */
     protected Optional<ResponseEntity<?>> beforeDelete(String entityDeleteId){
         return Optional.empty();

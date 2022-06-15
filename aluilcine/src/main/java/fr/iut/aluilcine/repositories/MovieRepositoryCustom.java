@@ -1,11 +1,12 @@
 package fr.iut.aluilcine.repositories;
 
-import fr.iut.aluilcine.entities.Movie;
 import fr.iut.aluilcine.entities.MovieAggregate;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
+/**
+ * Represente un repository custom pour des films
+ */
 public interface MovieRepositoryCustom{
 
     /**

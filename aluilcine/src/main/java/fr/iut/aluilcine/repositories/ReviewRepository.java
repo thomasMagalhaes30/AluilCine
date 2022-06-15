@@ -10,7 +10,17 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface ReviewRepository extends MongoRepository<Review, String> {
 
+    /**
+     * Cherche les films par identifiant de film
+     * @param movieId identifiant d'un film
+     * @param pageable pagination
+     * @return une page de review
+     */
     Page<Review> findByMovieId(String movieId,Pageable pageable);
 
+    /**
+     * Supprime tout les commentaires qui ont le movieId correspondant au paramètre
+     * @param movieId identifiant d'un film
+     */
     void deleteByMovieId(String movieId);
 }
