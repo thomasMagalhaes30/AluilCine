@@ -22,7 +22,7 @@ import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
  * CinemaController qui permet la gestion des {@link MovieSession movie session}.
  */
 @RestController
-@RequestMapping("/moviesessions")
+@RequestMapping("/movieSessions")
 public class MovieSessionController extends BaseController<MovieSession, MovieSessionRepository> {
     
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
