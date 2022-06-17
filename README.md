@@ -64,6 +64,11 @@ Chaque entité a un CRUD associé grâce à l'extends de [BaseController](aluilc
 | --- | --- | :---: |
 | GET | /moviesessions/condition/ | *day*, *cinemaId* et *movieId*, le day est au format (dd-MM-yyyy) comme (23-08-2022) |
 
+#### [ReviewController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/ReviewController.java)
+| Verbe | Route API | Paramètre de requête |
+| --- | --- | --- |
+| GET | /reviews/pageableByMovieId/ | *movieId*, *page* : Integer, *numberOfReviewsByPage* : Integer - *page* et *numberOfReviewsByPage* sont optionnels|
+
 ## Auteurs
 
 - [DA SILVA Antoine](https://github.com/antoine6348)
