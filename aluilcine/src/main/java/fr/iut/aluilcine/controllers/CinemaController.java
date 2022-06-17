@@ -75,7 +75,7 @@ public class CinemaController extends BaseController<Cinema, CinemaRepository> {
             float cLatitude = c.getLatitude();
             float cLongitude = c.getLongitude();
 
-            double rayon = Math.sqrt(Math.pow(cLatitude-latitude,2) - Math.pow(cLongitude-longitude,2));
+            double rayon = Math.sqrt(Math.pow(cLatitude-latitude,2) + Math.pow(cLongitude-longitude,2));
 
             logger.info("Rayon calculé pour " + c.getName() + " est de : " + rayon);
             cinemaDistances.add(new CinemaDistance(c, rayon));
