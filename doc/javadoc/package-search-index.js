@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.iut.aluilcine"},{"l":"fr.iut.aluilcine.controllers"},{"l":"fr.iut.aluilcine.entities"},{"l":"fr.iut.aluilcine.repositories"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"fr.iut.aluilcine"},{"l":"fr.iut.aluilcine.controllers"},{"l":"fr.iut.aluilcine.entities"},{"l":"fr.iut.aluilcine.repositories"}];updateSearchResults();

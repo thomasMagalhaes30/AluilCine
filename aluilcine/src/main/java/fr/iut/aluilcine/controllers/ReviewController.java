@@ -50,31 +50,39 @@ public class ReviewController extends BaseController<Review, ReviewRepository>{
         return Optional.empty();
     }
 
+    /**
+     * Obtenir les reviews selon un movieId, on peut aussi avoir une certaine page et avoir
+     * @param movieId le movieId
+     * @param page la page à récupérer
+     * @param numberOfReviewsByPage le nombre de reviews par page
+     * @return Une response entity avec des reviews, ou alors du texte
+     */
     @GetMapping("/pageableByMovieId")
     public ResponseEntity<?> getReviewsByMovieIdByPage(@RequestParam(value = "movieId") String movieId,
-                                           @RequestParam(value = "page", required = false) Integer page,
-                                                       @RequestParam(value = "numberOfReviewsByPage", required = false) Integer numberOfReviewsByPage){
+                                                       @RequestParam(value = "page", required = false) Integer page,
+                                                       @RequestParam(value = "numberOfReviewsByPage", required = false) Integer numberOfReviewsByPage)
+    {
+        try{
+            if (numberOfReviewsByPage == null) numberOfReviewsByPage = 5;
 
-    try{
-        if (numberOfReviewsByPage == null) numberOfReviewsByPage = 5;
+            if(numberOfReviewsByPage <= 0 || numberOfReviewsByPage > 20)
+                return new ResponseEntity<>("Le nombre doit être entre 1 et 20",NOT_ACCEPTABLE);
 
-        if(numberOfReviewsByPage <= 0 || numberOfReviewsByPage > 20)
-            return new ResponseEntity<>("Le nombre doit être entre 1 et 20",NOT_ACCEPTABLE);
+            if(page == null) {
+                PageRequest request = PageRequest.of(0,numberOfReviewsByPage);
+                return new ResponseEntity<>(repository.findByMovieId(movieId,request), OK);
+            }
 
-        if(page == null){
-            PageRequest request = PageRequest.of(0,numberOfReviewsByPage);
+            if(page < 0)
+                return new ResponseEntity<>("Le numero de la page doit être positif",NOT_ACCEPTABLE);
+
+            PageRequest request = PageRequest.of(page,numberOfReviewsByPage);
+
             return new ResponseEntity<>(repository.findByMovieId(movieId,request), OK);
+
+        }catch (Exception e){
+            customLogError(e.getMessage());
         }
-
-        if(page < 0)
-            return new ResponseEntity<>("Le numero de la page doit être positif",NOT_ACCEPTABLE);
-
-        PageRequest request = PageRequest.of(page,numberOfReviewsByPage);
-        return new ResponseEntity<>(repository.findByMovieId(movieId,request), OK);
-
-    }catch (Exception e){
-        customLogError(e.getMessage());
-    }
         return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
     }
 }

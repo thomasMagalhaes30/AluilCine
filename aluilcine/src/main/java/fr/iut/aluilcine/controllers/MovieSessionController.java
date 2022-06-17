@@ -30,7 +30,7 @@ public class MovieSessionController extends BaseController<MovieSession, MovieSe
     private final ZoneId defaultZoneId = ZoneId.systemDefault();
 
     /**
-     * Obten tout les horaires de film avec certaines conditions préalable
+     * Obtenir tout les horaires de film avec certaines conditions préalable
      * @param day le jour de l'horaire au format (dd-MM-yyy) par exemple (23-08-2019)
      * @param cinemaId l'identifiant du cinema
      * @param movieId l'identifiant du film
