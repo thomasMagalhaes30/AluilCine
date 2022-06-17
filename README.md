@@ -62,7 +62,7 @@ Chaque entité a un CRUD associé grâce à l'extends de [BaseController](aluilc
 
 | Verbe | Route API | Paramètre de requête |
 | --- | --- | :---: |
-| GET | /moviesessions/condition/ | *day*, *cinemaId* et *movieId*, le day est au format (dd-MM-yyyy) comme (23-08-2022) |
+| GET | /movieSessions/condition/ | *day*, *cinemaId* et *movieId*, le day est au format (dd-MM-yyyy) comme (23-08-2022) |
 
 #### [ReviewController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/ReviewController.java)
 | Verbe | Route API | Paramètre de requête |
