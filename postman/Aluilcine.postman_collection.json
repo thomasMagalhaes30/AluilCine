@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "24aad461-895b-4742-b797-91c530e098ab",
+		"_postman_id": "32d6e243-60a1-43a9-8c44-5295f699bba2",
 		"name": "Aluilcine",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -263,6 +263,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "FIND BY TITLE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movies/searchByTitle/ad m",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movies",
+								"searchByTitle",
+								"ad m"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -416,13 +435,45 @@
 					"response": []
 				},
 				{
+					"name": "ALL REVIEW ONE MOVIE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/reviews/pageableByMovieId?movieId={{movie-id}}&page=0&numberOfReviewsByPage=3",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"reviews",
+								"pageableByMovieId"
+							],
+							"query": [
+								{
+									"key": "movieId",
+									"value": "{{movie-id}}"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "numberOfReviewsByPage",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "REVIEWS",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"schemaVersion\": 0,\n    \"pseudo\": \"Margaux Charles\",\n    \"message\": \"Les licornes\",\n    \"mark\": 4,\n    \"movieId\": null,\n    \"userId\": null\n}",
+							"raw": "{\n    \"schemaVersion\": 0,\n    \"pseudo\": \"les frerots \",\n    \"message\": \"like \",\n    \"mark\": 5,\n    \"movieId\": \"{{movie-id}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -448,7 +499,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"schemaVersion\": 0,\n    \"pseudo\": \"Margaux Charles\",\n    \"message\": \"Message update\",\n    \"mark\": 4,\n    \"movieId\": null,\n    \"userId\": null\n}",
+							"raw": "{\n    \"schemaVersion\": 0,\n    \"pseudo\": \"Margaux\",\n    \"message\": \"Message update\",\n    \"mark\": 4,\n    \"movieId\": \"62a3b19241961a57fb485cfc\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -521,6 +572,34 @@
 							"path": [
 								"cinemas",
 								"{{cinema-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL CINEMA WITH LOCATION",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/cinemas/location?latitude=48.862725&longitude=2.287592",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"cinemas",
+								"location"
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "48.862725"
+								},
+								{
+									"key": "longitude",
+									"value": "2.287592"
+								}
 							]
 						}
 					},
@@ -700,6 +779,144 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "MovieSession",
+			"item": [
+				{
+					"name": "ALL MOVIESESSION",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/movieSessions",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movieSessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ONE MOVIESESSION",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movieSessions/condition?movieId={{movie-id}}&cinemaId={{cinema-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movieSessions",
+								"condition"
+							],
+							"query": [
+								{
+									"key": "movieId",
+									"value": "{{movie-id}}"
+								},
+								{
+									"key": "cinemaId",
+									"value": "{{cinema-id}}"
+								},
+								{
+									"key": "date",
+									"value": "23-02-2012",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MOVIESESSIONS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"schemaVersion\": 0,\n        \"movieId\": \"{{movie-id}}\",\n        \"cinemaId\": \"{{cinema-id}}\",\n        \"dateSchedule\": 1655383134000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/movieSessions",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movieSessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MOVIESESSION",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"schemaVersion\": 0,\n        \"movieId\": \"{{movie-id}}\",\n        \"cinemaId\": \"{{cinema-id}}\",\n        \"dateSchedule\": 1656592734000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{aluilcine-url}}/movieSessions/{{moviesession-id}}",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movieSessions",
+								"{{moviesession-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE MOVIESESSION",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{aluilcine-url}}/movieSessions/629a055ba3cd7844af6e19c6",
+							"host": [
+								"{{aluilcine-url}}"
+							],
+							"path": [
+								"movieSessions",
+								"629a055ba3cd7844af6e19c6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -733,7 +950,7 @@
 		},
 		{
 			"key": "review-id",
-			"value": "62947b6fe0955861ecc0fbdd"
+			"value": "62a4c8405bd4d67f65dc78c1"
 		},
 		{
 			"key": "cinema-id",
@@ -746,6 +963,11 @@
 		{
 			"key": "category-id",
 			"value": "62a314e8362eb528e9cd1e9c"
+		},
+		{
+			"key": "moviesession-id",
+			"value": "629e22cb704fa1332cf3d85a",
+			"type": "default"
 		}
 	]
 }
