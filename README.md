@@ -65,6 +65,14 @@ Chaque entité a un CRUD associé grâce à l'extends de [BaseController](aluilc
 | PUT | /{nomDeLaCollection}/{id} | Modifier un document | 
 | DELETE | /{nomDeLaCollection}/{id} | Supprimer un document |
 
+#### [MovieController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/MovieController.java)
+| Verbe | Route API | Paramètre de requête | Exemple |
+| --- | --- | :---: | --- |
+| GET | /movies/pageableByMark{number} | **number** le nombre de movie souhaités sur la page. un paramètre optionnel page existe, il permet d'obtenir les films selon une pagination, un entier est attendu pour se paramètre.|  `/movies/pageableByMark10?page=2` |
+| GET | /movies/last{number}MovieReleased/ | retourne une liste des derniers film sorti en fonction du number, sachant que le number doit être compris de 1 à 20 | `/movies/last10MovieReleased` |
+| GET | /movies/pageableByCategory/{category} | Obtenir les films pour une catégorie donnée, paramètre **page** pour obtenir la page de la pagination avec le paramètre **numberOfMovieByPage** qui indique le nombre de films par page | `/movies/pageableByCategory/Action?page=2&numberOfMovieByPage=6` |
+| GET | /movies/markAvgByCategory | retourne la note moyenne des films par catégorie | `/movies/markAvgByCategory` |
+| GET | /movies/searchByTitle/{searchTitle} | retourne les films qui contiennent **seachTitle** dans leur titre | `/movies/searchByTitle/toto` |
 #### [CinemaController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/CinemaController.java)
 
 | Verbe | Route API | Paramètre de requête |
