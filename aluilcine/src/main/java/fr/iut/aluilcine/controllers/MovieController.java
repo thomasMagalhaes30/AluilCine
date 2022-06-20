@@ -112,12 +112,12 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
                                              @RequestParam(value = "numberOfMovieByPage", required = false) Integer numberOfMovieByPage){
         try {
 
-            if(page == null &&numberOfMovieByPage != null){
+            if(page == null && numberOfMovieByPage != null){
                 PageRequest request = PageRequest.of(0,numberOfMovieByPage);
                 return new ResponseEntity<>(repository.findByCategories(category, request).getContent(), OK);
             }
 
-            if(page == null &&numberOfMovieByPage == null){
+            if(page == null && numberOfMovieByPage == null){
                 PageRequest request = PageRequest.of(0,20);
                 return new ResponseEntity<>(repository.findByCategories(category, request).getContent(), OK);
             }
@@ -146,8 +146,23 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
     @GetMapping("/markAvgByCategories")
     public ResponseEntity<?> markAvgByCategories() {
         try {
-            System.out.println("Controller");
             return new ResponseEntity<>(movieRepositoryCustom.markAvgByCategories(), OK);
+        }catch (Exception e){
+            customLogError(e.getMessage());
+        }
+        return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * Obtient les films à partir d'une recherche sur le titre du film
+     * @param searchTitle titre recherché
+     * @return une liste de film
+     */
+    @GetMapping("/searchByTitle/{searchTitle}")
+    public ResponseEntity<?> findByTitle(@PathVariable("searchTitle") String searchTitle){
+        try {
+            System.out.println(searchTitle);
+            return new ResponseEntity<>(repository.findMoviesByTitleContainsIgnoreCase(searchTitle), OK);
         }catch (Exception e){
             customLogError(e.getMessage());
         }

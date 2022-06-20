@@ -1,6 +1,7 @@
 package fr.iut.aluilcine.repositories;
 
 import fr.iut.aluilcine.entities.Movie;
+import fr.iut.aluilcine.entities.MovieSession;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -38,4 +39,11 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
      */
     @Query("{'categories': ?0}")
     Page<Movie> findByCategories(String category, Pageable pageable);
+
+    /**
+     * Cherche les films a partir d'un titre
+     * @param searchTitle titre a utiliser pour la recherche
+     * @return une list de film
+     */
+    List<Movie> findMoviesByTitleContainsIgnoreCase(String searchTitle);
 }
