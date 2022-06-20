@@ -190,7 +190,7 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
 //         ██████     ██    ██ ███████ ███████
 
     /**
-     * Méthode appellé après l'ajout de l'entité
+     * Méthode appellée après l'ajout de l'entité
      * @param entityAdd l'entité ajouté
      * @return un optional d'une response entity vide si il y a rien a faire, rempli si on souhaite effectué une action
      */
@@ -199,7 +199,7 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
     }
 
     /**
-     * Méthode appellé avant la modification de l'entité
+     * Méthode appellée avant la modification de l'entité
      * @param oldEntity l'entité avant update
      * @param newEntity l'entité après update
      * @return un optional d'une response entity vide si il y a rien a faire, rempli si on souhaite effectué une action
@@ -209,7 +209,7 @@ public abstract class BaseController <TEntity extends BaseEntity, TRepository ex
     }
 
     /**
-     * Méthode appellé avant la suppression de l'entité
+     * Méthode appellée avant la suppression de l'entité
      * @param entityDeleteId l'identifiant de l'entité qui va être supprimé
      * @return un optional d'une response entity vide si il y a rien a faire, rempli si on souhaite effectué une action
      */

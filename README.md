@@ -37,6 +37,19 @@ ou
 ```bash
 ./mvnw spring-boot:run
 ```
+
+## Informations & documentation
+- Le code se trouve dans [`AluilCine/aluilcine/`](aluilcine/)
+- Un postman configuré est disponilbe trouve dans [`AluilCine/postman/`](postman/)
+- La javadoc se trouve dans [`AluilCine/doc/javadoc/`](doc/javadoc/)
+- Le MCD  se trouve dans [`AluilCine/doc/MCD/`](doc/MCD/)
+- l'UML se trouve dans [`AluilCine/doc/UML/`](doc/UML/)
+
+Les diiférents point d'évaluations sont justifié dans les issues qui ont certainnes Milestones
+- [issue avec milestone DOC](https://github.com/thomasMagalhaes30/AluilCine/issues?q=is%3Aopen+is%3Aissue+milestone%3ADOC)
+- [issue avec milestone Check](https://github.com/thomasMagalhaes30/AluilCine/issues?q=is%3Aopen+is%3Aissue+milestone%3ACheck) (correspond à la justifiaction des différents points demmandés dans le sujet)
+
+
 ## Structure
 
 ### Tableaux
@@ -44,6 +57,14 @@ ou
 #### CRUD
 
 Chaque entité a un CRUD associé grâce à l'extends de [BaseController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/BaseController.java)
+
+Les collections disponibles, sont :
+ - *movies*
+ - *cinemas*
+ - *movieSessions*
+ - *reviews*
+ - *users*
+
 | Verbe | Route API | Definition |
 | --- | --- | :---: |
 | GET | /{nomDeLaCollection} | Obtenir toutes les documents d'une collection |
@@ -52,6 +73,14 @@ Chaque entité a un CRUD associé grâce à l'extends de [BaseController](aluilc
 | PUT | /{nomDeLaCollection}/{id} | Modifier un document | 
 | DELETE | /{nomDeLaCollection}/{id} | Supprimer un document |
 
+#### [MovieController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/MovieController.java)
+| Verbe | Route API | Paramètre de requête | Exemple |
+| --- | --- | :---: | --- |
+| GET | /movies/pageableByMark{number} | **number** le nombre de movie souhaités sur la page. un paramètre optionnel page existe, il permet d'obtenir les films selon une pagination, un entier est attendu pour se paramètre.|  `/movies/pageableByMark10?page=2` |
+| GET | /movies/last{number}MovieReleased/ | retourne une liste des derniers film sorti en fonction du number, sachant que le number doit être compris de 1 à 20 | `/movies/last10MovieReleased` |
+| GET | /movies/pageableByCategory/{category} | Obtenir les films pour une catégorie donnée, paramètre **page** pour obtenir la page de la pagination avec le paramètre **numberOfMovieByPage** qui indique le nombre de films par page | `/movies/pageableByCategory/Action?page=2&numberOfMovieByPage=6` |
+| GET | /movies/markAvgByCategory | retourne la note moyenne des films par catégorie | `/movies/markAvgByCategory` |
+| GET | /movies/searchByTitle/{searchTitle} | retourne les films qui contiennent **seachTitle** dans leur titre | `/movies/searchByTitle/toto` |
 #### [CinemaController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/CinemaController.java)
 
 | Verbe | Route API | Paramètre de requête |

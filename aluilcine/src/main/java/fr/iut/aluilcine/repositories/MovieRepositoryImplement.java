@@ -93,7 +93,6 @@ public class MovieRepositoryImplement implements MovieRepositoryCustom{
      */
     @GetMapping("/markAvgByCategories")
     public List<MovieAggregate> markAvgByCategories() {
-        System.out.println("repo");
         final Aggregation agg = newAggregation(
                 unwind("categories"),
                 group("categories").avg("mark").as("mark")

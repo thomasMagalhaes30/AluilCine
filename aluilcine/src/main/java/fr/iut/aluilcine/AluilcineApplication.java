@@ -19,7 +19,7 @@ public class AluilcineApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AluilcineApplication.class, args);
 		logger.info(String.format("%s started", AluilcineApplication.class.getSimpleName()));
-		//printLogo();
+		printLogo();
 	}
 
 	/**
