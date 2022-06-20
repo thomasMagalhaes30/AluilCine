@@ -1,4 +1,4 @@
-# ![AluilCine](https://github.com/thomasMagalhaes30/AluilCine/blob/dev/asset/AluilCineText.png)
+# ![AluilCine](asset/AluilCineText.png)
 
 AluilCine est un projet de Licence Pro de l'IUT Clermont-Ferrand 2022. (Période 3 - Client Serveur)
 
@@ -44,6 +44,7 @@ ou
 - La javadoc se trouve dans [`AluilCine/doc/javadoc/`](doc/javadoc/)
 - Le MCD  se trouve dans [`AluilCine/doc/MCD/`](doc/MCD/)
 - l'UML se trouve dans [`AluilCine/doc/UML/`](doc/UML/)
+- Quand l'API spring-boot est lancé, le swagger se trouve à l'URL `/swagger-ui/index.html`
 
 Les diiférents point d'évaluations sont justifié dans les issues qui ont certainnes Milestones
 - [issue avec milestone DOC](https://github.com/thomasMagalhaes30/AluilCine/issues?q=is%3Aopen+is%3Aissue+milestone%3ADOC)
