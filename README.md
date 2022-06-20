@@ -57,6 +57,13 @@ Les diiférents point d'évaluations sont justifié dans les issues qui ont cert
 #### CRUD
 
 Chaque entité a un CRUD associé grâce à l'extends de [BaseController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/BaseController.java)
+Les collections disponibles, sont :
+ - *movies*
+ - *cinemas*
+ - *movieSessions*
+ - *reviews*
+ - *users*
+
 | Verbe | Route API | Definition |
 | --- | --- | :---: |
 | GET | /{nomDeLaCollection} | Obtenir toutes les documents d'une collection |
