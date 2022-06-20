@@ -39,11 +39,11 @@ ou
 ```
 
 ## Informations & documentation
-- Le code se trouve dans `AluilCine/aluilcine/`
-- Un postman configuré est disponilbe trouve dans `AluilCine/postman/`
-- La javadoc se trouve dans `AluilCine/doc/javadoc/`
-- Le MCD  se trouve dans `AluilCine/doc/MCD/`
-- l'UML se trouve dans `AluilCine/doc/UML/`
+- Le code se trouve dans [`AluilCine/aluilcine/`](aluilcine/)
+- Un postman configuré est disponilbe trouve dans [`AluilCine/postman/`](postman/)
+- La javadoc se trouve dans [`AluilCine/doc/javadoc/`](doc/javadoc/)
+- Le MCD  se trouve dans [`AluilCine/doc/MCD/`](doc/MCD/)
+- l'UML se trouve dans [`AluilCine/doc/UML/`](doc/UML/)
 
 Les diiférents point d'évaluations sont justifié dans les issues qui ont certainnes Milestones
 - [issue avec milestone DOC](https://github.com/thomasMagalhaes30/AluilCine/issues?q=is%3Aopen+is%3Aissue+milestone%3ADOC)
@@ -57,6 +57,7 @@ Les diiférents point d'évaluations sont justifié dans les issues qui ont cert
 #### CRUD
 
 Chaque entité a un CRUD associé grâce à l'extends de [BaseController](aluilcine/src/main/java/fr/iut/aluilcine/controllers/BaseController.java)
+
 Les collections disponibles, sont :
  - *movies*
  - *cinemas*
