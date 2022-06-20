@@ -161,7 +161,6 @@ public class MovieController extends BaseController<Movie, MovieRepository> {
     @GetMapping("/searchByTitle/{searchTitle}")
     public ResponseEntity<?> findByTitle(@PathVariable("searchTitle") String searchTitle){
         try {
-            System.out.println(searchTitle);
             return new ResponseEntity<>(repository.findMoviesByTitleContainsIgnoreCase(searchTitle), OK);
         }catch (Exception e){
             customLogError(e.getMessage());
